@@ -388,3 +388,8 @@
 - Feature: `feat(precedents): catalog Criminal Defense and bail guidelines landmark rulings`
 - Path Scope: `['legal_data/precedents/criminal_precedents.py']`
 - Timestamp: 2026-09-10 11:06:58 UTC
+
+### Milestone #085 - 085-precedents-civil-commercial
+- Feature: `feat(precedents): catalog Civil Injunctions and specific performance landmark cases`
+- Path Scope: `['legal_data/precedents/civil_commercial_precedents.py']`
+- Timestamp: 2026-09-10 11:07:09 UTC
