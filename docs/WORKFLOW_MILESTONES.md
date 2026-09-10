@@ -158,3 +158,8 @@
 - Feature: `feat(deadlines): implement CaseDeadline and statutory limitation models`
 - Path Scope: `['apps/deadlines/models.py', 'apps/deadlines/apps.py']`
 - Timestamp: 2026-09-10 10:58:09 UTC
+
+### Milestone #039 - 039-deadlines-calculator-views
+- Feature: `feat(deadlines): create limitation calculator and deadline tracker views`
+- Path Scope: `['apps/deadlines/views.py', 'apps/deadlines/urls.py']`
+- Timestamp: 2026-09-10 10:58:20 UTC
