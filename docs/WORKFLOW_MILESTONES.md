@@ -208,3 +208,8 @@
 - Feature: `feat(orders): create court orders list and compliance tracking views`
 - Path Scope: `['apps/orders_judgments/views.py', 'apps/orders_judgments/urls.py']`
 - Timestamp: 2026-09-10 11:00:06 UTC
+
+### Milestone #049 - 049-orders-admin-tracker
+- Feature: `feat(orders): register court orders and compliance items in Django admin`
+- Path Scope: `['apps/orders_judgments/admin.py']`
+- Timestamp: 2026-09-10 11:00:17 UTC
