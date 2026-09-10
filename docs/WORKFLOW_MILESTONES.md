@@ -173,3 +173,8 @@
 - Feature: `feat(communications): implement MessageThread and CaseMessage models`
 - Path Scope: `['apps/communications/models.py', 'apps/communications/apps.py']`
 - Timestamp: 2026-09-10 10:58:42 UTC
+
+### Milestone #042 - 042-communications-portal-views
+- Feature: `feat(communications): create secure client-advocate messaging portal views`
+- Path Scope: `['apps/communications/views.py', 'apps/communications/urls.py']`
+- Timestamp: 2026-09-10 10:58:53 UTC
