@@ -1,0 +1,27 @@
+{
+  "name": "civiclaw-enterprise-platform",
+  "version": "1.0.0",
+  "description": "AI-Powered Legal Case Management & Court Workflow Platform",
+  "main": "main.py",
+  "scripts": {
+    "start": "python main.py runserver 0.0.0.0:8000",
+    "build": "python manage.py collectstatic --noinput",
+    "test": "python manage.py test tests",
+    "migrate": "python manage.py migrate",
+    "seed": "python manage.py seed_civiclaw_data",
+    "lint": "python manage.py check"
+  },
+  "keywords": [
+    "legal",
+    "court-management",
+    "case-management",
+    "django",
+    "law-firm",
+    "ai-legal"
+  ],
+  "author": "CivicLaw Engineering Team",
+  "license": "UNLICENSED",
+  "private": true,
+  "dependencies": {},
+  "devDependencies": {}
+}

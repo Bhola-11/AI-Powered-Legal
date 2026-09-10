@@ -41,35 +41,67 @@ An enterprise-grade, comprehensive legal case management and judicial court work
 
 ## Installation & Setup
 
-1. **Clone the Repository**:
-   ```bash
-   git clone https://github.com/Bhola-11/AI-Powered-Legal.git
-   cd AI-Powered-Legal
-   ```
+### Prerequisites
+- Python 3.11+
+- pip / poetry / pipenv
 
-2. **Set Up Python Environment**:
-   ```bash
-   python -m venv .venv
-   source .venv/bin/activate  # On Windows: .venv\Scripts\activate
-   pip install django
-   ```
+### Install Dependencies
+```bash
+pip install -r requirements.txt
+# Or using make:
+make install
+```
 
-3. **Run Migrations**:
-   ```bash
-   python manage.py makemigrations
-   python manage.py migrate
-   ```
+### Build & Static Assets
+```bash
+python manage.py collectstatic --noinput
+# Or using npm:
+npm run build
+# Or using make:
+make build
+```
 
-4. **Seed Enterprise Sample Data**:
-   ```bash
-   python manage.py seed_civiclaw_data
-   ```
+### Database Migrations & Seeding
+```bash
+python manage.py migrate
+python manage.py seed_civiclaw_data
+```
 
-5. **Start Application Server**:
-   ```bash
-   python manage.py runserver
-   ```
-   Visit `http://127.0.0.1:8000/` to access the portal.
+### Run the Application
+
+You can launch the platform using any of the following methods:
+
+**Method 1: Direct Entry Point**
+```bash
+python main.py runserver 0.0.0.0:8000
+```
+
+**Method 2: WSGI App Runner**
+```bash
+python app.py
+```
+
+**Method 3: Manage Command**
+```bash
+python manage.py runserver 0.0.0.0:8000
+```
+
+**Method 4: Using Makefile / NPM**
+```bash
+make run
+# or
+npm start
+```
+
+**Method 5: Docker Container**
+```bash
+docker build -t civiclaw:latest .
+docker run -p 8000:8000 civiclaw:latest
+# or with docker-compose:
+docker-compose up --build
+```
+
+Access the application in your browser at `http://127.0.0.1:8000/`.
 
 ---
 
@@ -77,4 +109,17 @@ An enterprise-grade, comprehensive legal case management and judicial court work
 
 ```bash
 python manage.py test tests
+# Or using npm / make:
+npm test
+make test
 ```
+
+---
+
+## Build System & Entrypoints
+- `main.py`: Primary application entrypoint
+- `app.py`: Web service / WSGI runner entrypoint
+- `Dockerfile`: Multi-stage container build definition
+- `docker-compose.yml`: Local containerized deployment orchestrator
+- `Makefile`: Build and automation tasks
+- `package.json`: NPM build and start scripts
