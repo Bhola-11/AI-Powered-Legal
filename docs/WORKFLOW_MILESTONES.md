@@ -78,3 +78,8 @@
 - Feature: `feat(cases): implement isolated internal case notes and chronological timeline`
 - Path Scope: `['apps/cases/admin.py']`
 - Timestamp: 2026-09-10 10:55:01 UTC
+
+### Milestone #023 - 023-hearings-calendar-models
+- Feature: `feat(hearings): implement Hearing model and hearing classification types`
+- Path Scope: `['apps/hearings/models.py', 'apps/hearings/apps.py']`
+- Timestamp: 2026-09-10 10:55:11 UTC
