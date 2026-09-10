@@ -288,3 +288,8 @@
 - Feature: `feat(statutes): codify Civil Procedure Code Orders 1-51 and procedural rules`
 - Path Scope: `['legal_data/statutes/cpc_full_code.py']`
 - Timestamp: 2026-09-10 11:03:09 UTC
+
+### Milestone #065 - 065-statutes-crpc-investigation
+- Feature: `feat(statutes): codify Criminal Procedure Code investigation and arrest rules`
+- Path Scope: `['legal_data/statutes/crpc_bnss_code.py']`
+- Timestamp: 2026-09-10 11:03:20 UTC
