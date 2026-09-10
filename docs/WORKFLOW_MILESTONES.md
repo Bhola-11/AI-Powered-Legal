@@ -248,3 +248,8 @@
 - Feature: `feat(audit): implement SHA-256 chained tamper-evident AuditLog model`
 - Path Scope: `['apps/audit/models.py', 'apps/audit/apps.py']`
 - Timestamp: 2026-09-10 11:01:38 UTC
+
+### Milestone #057 - 057-audit-logs-inspector-views
+- Feature: `feat(audit): create immutable audit trail inspector and security views`
+- Path Scope: `['apps/audit/views.py', 'apps/audit/urls.py']`
+- Timestamp: 2026-09-10 11:01:50 UTC
