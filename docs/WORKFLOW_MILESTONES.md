@@ -93,3 +93,8 @@
 - Feature: `feat(hearings): configure judicial hearings and daily board in Django admin`
 - Path Scope: `['apps/hearings/admin.py']`
 - Timestamp: 2026-09-10 10:55:33 UTC
+
+### Milestone #026 - 026-documents-vault-models
+- Feature: `feat(documents): implement LegalDocument vault and category models`
+- Path Scope: `['apps/documents/models.py', 'apps/documents/apps.py']`
+- Timestamp: 2026-09-10 10:55:45 UTC
