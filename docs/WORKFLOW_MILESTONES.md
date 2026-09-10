@@ -298,3 +298,8 @@
 - Feature: `feat(statutes): codify Criminal Procedure Code trials, bail and appeals`
 - Path Scope: `['legal_data/statutes/crpc_full_code.py']`
 - Timestamp: 2026-09-10 11:03:31 UTC
+
+### Milestone #067 - 067-statutes-ipc-offenses-state
+- Feature: `feat(statutes): codify Penal Code general exceptions and state offenses`
+- Path Scope: `['legal_data/statutes/ipc_bns_penal_code.py']`
+- Timestamp: 2026-09-10 11:03:43 UTC
