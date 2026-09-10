@@ -48,3 +48,8 @@
 - Feature: `feat(clients): configure conflict of interest clearance model and admin`
 - Path Scope: `['apps/clients/admin.py']`
 - Timestamp: 2026-09-10 10:53:53 UTC
+
+### Milestone #017 - 017-courts-complex-rooms
+- Feature: `feat(courts): implement CourtComplex and CourtRoom infrastructure models`
+- Path Scope: `['apps/courts/models.py', 'apps/courts/apps.py']`
+- Timestamp: 2026-09-10 10:54:06 UTC
