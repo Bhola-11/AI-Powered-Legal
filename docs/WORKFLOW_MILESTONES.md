@@ -308,3 +308,8 @@
 - Feature: `feat(statutes): codify Penal Code bodily, proprietary and fraud offenses`
 - Path Scope: `['legal_data/statutes/ipc_full_code.py']`
 - Timestamp: 2026-09-10 11:03:54 UTC
+
+### Milestone #069 - 069-statutes-evidence-relevancy
+- Feature: `feat(statutes): codify Law of Evidence relevancy and admission standards`
+- Path Scope: `['legal_data/statutes/evidence_bsa_code.py']`
+- Timestamp: 2026-09-10 11:04:05 UTC
