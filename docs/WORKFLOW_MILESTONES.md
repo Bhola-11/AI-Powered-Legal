@@ -398,3 +398,8 @@
 - Feature: `feat(precedents): catalog Arbitration and award enforcement landmark authorities`
 - Path Scope: `['legal_data/precedents/arbitration_precedents.py']`
 - Timestamp: 2026-09-10 11:07:20 UTC
+
+### Milestone #087 - 087-precedents-corporate-ip
+- Feature: `feat(precedents): catalog Corporate Governance, IBC and Trademark landmark rulings`
+- Path Scope: `['legal_data/precedents/corporate_ip_precedents.py']`
+- Timestamp: 2026-09-10 11:07:32 UTC
