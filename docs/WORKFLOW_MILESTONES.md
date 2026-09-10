@@ -393,3 +393,8 @@
 - Feature: `feat(precedents): catalog Civil Injunctions and specific performance landmark cases`
 - Path Scope: `['legal_data/precedents/civil_commercial_precedents.py']`
 - Timestamp: 2026-09-10 11:07:09 UTC
+
+### Milestone #086 - 086-precedents-arbitration-rulings
+- Feature: `feat(precedents): catalog Arbitration and award enforcement landmark authorities`
+- Path Scope: `['legal_data/precedents/arbitration_precedents.py']`
+- Timestamp: 2026-09-10 11:07:20 UTC
