@@ -53,3 +53,8 @@
 - Feature: `feat(courts): implement CourtComplex and CourtRoom infrastructure models`
 - Path Scope: `['apps/courts/models.py', 'apps/courts/apps.py']`
 - Timestamp: 2026-09-10 10:54:06 UTC
+
+### Milestone #018 - 018-courts-judges-benches
+- Feature: `feat(courts): add Judge and Bench directory views with roster schedules`
+- Path Scope: `['apps/courts/views.py', 'apps/courts/urls.py']`
+- Timestamp: 2026-09-10 10:54:17 UTC
