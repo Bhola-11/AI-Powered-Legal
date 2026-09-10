@@ -453,3 +453,8 @@
 - Feature: `feat(templates): implement 5 specialized dashboards for Admin, Lawyer and Client`
 - Path Scope: `['templates/dashboards/']`
 - Timestamp: 2026-09-10 11:09:25 UTC
+
+### Milestone #098 - 098-templates-case-management-views
+- Feature: `feat(templates): implement case list, case detail dossier and intake wizard templates`
+- Path Scope: `['templates/cases/']`
+- Timestamp: 2026-09-10 11:09:37 UTC
