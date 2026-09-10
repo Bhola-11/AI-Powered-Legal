@@ -353,3 +353,8 @@
 - Feature: `feat(statutes): codify Constitution of India High Courts, Supreme Court and Writs`
 - Path Scope: `['legal_data/statutes/constitution_full_code.py']`
 - Timestamp: 2026-09-10 11:05:39 UTC
+
+### Milestone #078 - 078-statutes-family-property-laws
+- Feature: `feat(statutes): codify IT Act, NI Act, Consumer Protection and Motor Vehicles Act`
+- Path Scope: `['legal_data/statutes/family_property_special_acts.py']`
+- Timestamp: 2026-09-10 11:05:51 UTC
