@@ -273,3 +273,8 @@
 - Feature: `feat(ai): register AI query execution logs and telemetry in admin`
 - Path Scope: `['apps/ai_engine/admin.py']`
 - Timestamp: 2026-09-10 11:02:35 UTC
+
+### Milestone #062 - 062-database-migrations-core
+- Feature: `feat(migrations): apply all initial schema migrations across 19 apps`
+- Path Scope: `['apps/']`
+- Timestamp: 2026-09-10 11:02:46 UTC
