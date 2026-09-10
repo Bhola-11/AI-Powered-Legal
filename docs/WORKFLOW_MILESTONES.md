@@ -473,3 +473,8 @@
 - Feature: `feat(templates): implement legal research browser, task kanban and deadline templates`
 - Path Scope: `['templates/research/', 'templates/tasks/', 'templates/deadlines/']`
 - Timestamp: 2026-09-10 11:10:11 UTC
+
+### Milestone #102 - 102-templates-billing-orders-comms
+- Feature: `feat(templates): implement invoice generator, court orders and secure messaging templates`
+- Path Scope: `['templates/billing/', 'templates/orders/', 'templates/communications/']`
+- Timestamp: 2026-09-10 11:10:22 UTC
