@@ -428,3 +428,8 @@
 - Feature: `feat(pleadings): add bail applications, quashing petitions and complaint templates`
 - Path Scope: `['legal_data/pleadings/criminal_pleadings_templates.py']`
 - Timestamp: 2026-09-10 11:08:28 UTC
+
+### Milestone #093 - 093-pleadings-writ-petitions-appeals
+- Feature: `feat(pleadings): add Article 32/226 writ petitions and special leave petition forms`
+- Path Scope: `['legal_data/pleadings/writ_appellate_pleadings_templates.py']`
+- Timestamp: 2026-09-10 11:08:39 UTC
