@@ -98,3 +98,8 @@
 - Feature: `feat(documents): implement LegalDocument vault and category models`
 - Path Scope: `['apps/documents/models.py', 'apps/documents/apps.py']`
 - Timestamp: 2026-09-10 10:55:45 UTC
+
+### Milestone #027 - 027-documents-versioning-hash
+- Feature: `feat(documents): add SHA-256 integrity verification, versioning and vault views`
+- Path Scope: `['apps/documents/views.py', 'apps/documents/urls.py']`
+- Timestamp: 2026-09-10 10:55:58 UTC
