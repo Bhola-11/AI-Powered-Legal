@@ -123,3 +123,8 @@
 - Feature: `feat(evidence): associate evidence items with witness statements in admin`
 - Path Scope: `['apps/evidence/admin.py']`
 - Timestamp: 2026-09-10 10:56:45 UTC
+
+### Milestone #032 - 032-legal-research-statutes-models
+- Feature: `feat(research): implement StatutoryAct and StatutorySection models`
+- Path Scope: `['apps/legal_research/models.py', 'apps/legal_research/apps.py']`
+- Timestamp: 2026-09-10 10:56:56 UTC
