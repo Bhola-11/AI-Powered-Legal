@@ -128,3 +128,8 @@
 - Feature: `feat(research): implement StatutoryAct and StatutorySection models`
 - Path Scope: `['apps/legal_research/models.py', 'apps/legal_research/apps.py']`
 - Timestamp: 2026-09-10 10:56:56 UTC
+
+### Milestone #033 - 033-legal-research-precedents-views
+- Feature: `feat(research): add landmark case precedent browser and ratio viewer`
+- Path Scope: `['apps/legal_research/views.py', 'apps/legal_research/urls.py']`
+- Timestamp: 2026-09-10 10:57:08 UTC
