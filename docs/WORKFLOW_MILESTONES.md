@@ -108,3 +108,8 @@
 - Feature: `feat(documents): register legal document vault and permissions in admin`
 - Path Scope: `['apps/documents/admin.py']`
 - Timestamp: 2026-09-10 10:56:10 UTC
+
+### Milestone #029 - 029-evidence-register-models
+- Feature: `feat(evidence): implement EvidenceItem model and exhibit markings`
+- Path Scope: `['apps/evidence/models.py', 'apps/evidence/apps.py']`
+- Timestamp: 2026-09-10 10:56:21 UTC
