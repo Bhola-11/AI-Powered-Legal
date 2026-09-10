@@ -358,3 +358,8 @@
 - Feature: `feat(statutes): codify IT Act, NI Act, Consumer Protection and Motor Vehicles Act`
 - Path Scope: `['legal_data/statutes/family_property_special_acts.py']`
 - Timestamp: 2026-09-10 11:05:51 UTC
+
+### Milestone #079 - 079-statutes-contract-and-property
+- Feature: `feat(statutes): codify Indian Contract Act and Transfer of Property Act`
+- Path Scope: `['legal_data/statutes/contract_property_acts.py']`
+- Timestamp: 2026-09-10 11:06:02 UTC
