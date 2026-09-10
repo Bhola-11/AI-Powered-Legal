@@ -88,3 +88,8 @@
 - Feature: `feat(hearings): create Daily Board, cause list display and calendar views`
 - Path Scope: `['apps/hearings/views.py', 'apps/hearings/urls.py']`
 - Timestamp: 2026-09-10 10:55:22 UTC
+
+### Milestone #025 - 025-hearings-admin-roster
+- Feature: `feat(hearings): configure judicial hearings and daily board in Django admin`
+- Path Scope: `['apps/hearings/admin.py']`
+- Timestamp: 2026-09-10 10:55:33 UTC
