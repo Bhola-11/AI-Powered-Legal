@@ -143,3 +143,8 @@
 - Feature: `feat(tasks): implement CaseTask, WorkflowStage and TaskChecklist models`
 - Path Scope: `['apps/tasks/models.py', 'apps/tasks/apps.py']`
 - Timestamp: 2026-09-10 10:57:33 UTC
+
+### Milestone #036 - 036-tasks-kanban-board
+- Feature: `feat(tasks): create interactive case task board and Kanban views`
+- Path Scope: `['apps/tasks/views.py', 'apps/tasks/urls.py']`
+- Timestamp: 2026-09-10 10:57:44 UTC
