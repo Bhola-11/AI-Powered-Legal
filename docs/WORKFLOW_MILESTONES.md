@@ -193,3 +193,8 @@
 - Feature: `feat(billing): create invoice generation, time tracking and billing views`
 - Path Scope: `['apps/billing/views.py', 'apps/billing/urls.py']`
 - Timestamp: 2026-09-10 10:59:31 UTC
+
+### Milestone #046 - 046-billing-admin-payments
+- Feature: `feat(billing): configure payment receipts and billing ledger in admin`
+- Path Scope: `['apps/billing/admin.py']`
+- Timestamp: 2026-09-10 10:59:43 UTC
