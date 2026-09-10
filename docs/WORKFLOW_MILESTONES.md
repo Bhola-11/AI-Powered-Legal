@@ -348,3 +348,8 @@
 - Feature: `feat(statutes): codify Constitution of India Fundamental Rights Articles 12-35`
 - Path Scope: `['legal_data/statutes/constitutional_law_articles.py']`
 - Timestamp: 2026-09-10 11:05:27 UTC
+
+### Milestone #077 - 077-statutes-constitution-writs-judiciary
+- Feature: `feat(statutes): codify Constitution of India High Courts, Supreme Court and Writs`
+- Path Scope: `['legal_data/statutes/constitution_full_code.py']`
+- Timestamp: 2026-09-10 11:05:39 UTC
