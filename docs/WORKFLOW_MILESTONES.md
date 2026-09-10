@@ -323,3 +323,8 @@
 - Feature: `feat(statutes): codify Limitation Act Sections 1-32 and 137 Schedule Articles`
 - Path Scope: `['legal_data/statutes/limitation_act_schedules.py']`
 - Timestamp: 2026-09-10 11:04:28 UTC
+
+### Milestone #072 - 072-statutes-commercial-courts-arbitration
+- Feature: `feat(statutes): codify Commercial Courts Act and Specific Relief Act`
+- Path Scope: `['legal_data/statutes/commercial_arbitration_acts.py']`
+- Timestamp: 2026-09-10 11:04:40 UTC
