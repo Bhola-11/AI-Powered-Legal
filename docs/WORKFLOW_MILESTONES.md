@@ -133,3 +133,8 @@
 - Feature: `feat(research): add landmark case precedent browser and ratio viewer`
 - Path Scope: `['apps/legal_research/views.py', 'apps/legal_research/urls.py']`
 - Timestamp: 2026-09-10 10:57:08 UTC
+
+### Milestone #034 - 034-legal-research-notebooks
+- Feature: `feat(research): implement advocate research notebooks and citation mapping`
+- Path Scope: `['apps/legal_research/admin.py']`
+- Timestamp: 2026-09-10 10:57:20 UTC
