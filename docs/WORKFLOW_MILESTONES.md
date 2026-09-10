@@ -343,3 +343,8 @@
 - Feature: `feat(statutes): codify Insolvency and Bankruptcy Code CIRP and liquidation regulations`
 - Path Scope: `['legal_data/statutes/companies_full_code.py']`
 - Timestamp: 2026-09-10 11:05:15 UTC
+
+### Milestone #076 - 076-statutes-constitution-rights
+- Feature: `feat(statutes): codify Constitution of India Fundamental Rights Articles 12-35`
+- Path Scope: `['legal_data/statutes/constitutional_law_articles.py']`
+- Timestamp: 2026-09-10 11:05:27 UTC
