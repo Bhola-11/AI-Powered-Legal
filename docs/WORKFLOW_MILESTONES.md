@@ -403,3 +403,8 @@
 - Feature: `feat(precedents): catalog Corporate Governance, IBC and Trademark landmark rulings`
 - Path Scope: `['legal_data/precedents/corporate_ip_precedents.py']`
 - Timestamp: 2026-09-10 11:07:32 UTC
+
+### Milestone #088 - 088-precedents-evidence-procedure
+- Feature: `feat(precedents): catalog Electronic Evidence and proof beyond reasonable doubt cases`
+- Path Scope: `['legal_data/precedents/evidence_procedure_precedents.py']`
+- Timestamp: 2026-09-10 11:07:43 UTC
