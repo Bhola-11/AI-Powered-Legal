@@ -458,3 +458,8 @@
 - Feature: `feat(templates): implement case list, case detail dossier and intake wizard templates`
 - Path Scope: `['templates/cases/']`
 - Timestamp: 2026-09-10 11:09:37 UTC
+
+### Milestone #099 - 099-templates-hearings-calendar-views
+- Feature: `feat(templates): implement hearing list, daily board and calendar templates`
+- Path Scope: `['templates/hearings/']`
+- Timestamp: 2026-09-10 11:09:48 UTC
