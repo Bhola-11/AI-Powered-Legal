@@ -23,3 +23,8 @@
 - Feature: `feat(firms): implement LawFirm and firm settings data models`
 - Path Scope: `['apps/firms/models.py', 'apps/firms/apps.py']`
 - Timestamp: 2026-09-10 10:52:57 UTC
+
+### Milestone #012 - 012-firms-branches-practice
+- Feature: `feat(firms): add branch offices, practice areas and firm directory views`
+- Path Scope: `['apps/firms/views.py', 'apps/firms/urls.py']`
+- Timestamp: 2026-09-10 10:53:09 UTC
