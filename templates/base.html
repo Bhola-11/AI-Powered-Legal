@@ -1,0 +1,33 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}CivicLaw Enterprise{% endblock %} - AI Legal Suite</title>
+    <link rel="stylesheet" href="{% static 'css/civiclaw.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    {% block extra_css %}{% endblock %}
+</head>
+<body class="civiclaw-body">
+    {% include 'navbar.html' %}
+    <div class="app-layout">
+        {% include 'sidebar.html' %}
+        <main class="main-content">
+            {% include 'messages.html' %}
+            <div class="content-header">
+                <h2>{% block page_title %}{% endblock %}</h2>
+                <div class="header-actions">
+                    {% block header_actions %}{% endblock %}
+                </div>
+            </div>
+            <div class="content-body">
+                {% block content %}{% endblock %}
+            </div>
+        </main>
+    </div>
+    {% include 'footer.html' %}
+    <script src="{% static 'js/civiclaw.js' %}"></script>
+    {% block extra_js %}{% endblock %}
+</body>
+</html>
