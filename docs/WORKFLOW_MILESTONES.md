@@ -203,3 +203,8 @@
 - Feature: `feat(orders): implement CourtOrder and ComplianceItem models`
 - Path Scope: `['apps/orders_judgments/models.py', 'apps/orders_judgments/apps.py']`
 - Timestamp: 2026-09-10 10:59:55 UTC
+
+### Milestone #048 - 048-orders-compliance-views
+- Feature: `feat(orders): create court orders list and compliance tracking views`
+- Path Scope: `['apps/orders_judgments/views.py', 'apps/orders_judgments/urls.py']`
+- Timestamp: 2026-09-10 11:00:06 UTC
