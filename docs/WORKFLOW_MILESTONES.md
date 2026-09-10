@@ -268,3 +268,8 @@
 - Feature: `feat(ai): create AI Legal Copilot interactive workspace view`
 - Path Scope: `['apps/ai_engine/views.py', 'apps/ai_engine/urls.py']`
 - Timestamp: 2026-09-10 11:02:24 UTC
+
+### Milestone #061 - 061-ai-query-logs-admin
+- Feature: `feat(ai): register AI query execution logs and telemetry in admin`
+- Path Scope: `['apps/ai_engine/admin.py']`
+- Timestamp: 2026-09-10 11:02:35 UTC
