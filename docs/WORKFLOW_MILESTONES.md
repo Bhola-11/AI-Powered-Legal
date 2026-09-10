@@ -303,3 +303,8 @@
 - Feature: `feat(statutes): codify Penal Code general exceptions and state offenses`
 - Path Scope: `['legal_data/statutes/ipc_bns_penal_code.py']`
 - Timestamp: 2026-09-10 11:03:43 UTC
+
+### Milestone #068 - 068-statutes-ipc-offenses-property
+- Feature: `feat(statutes): codify Penal Code bodily, proprietary and fraud offenses`
+- Path Scope: `['legal_data/statutes/ipc_full_code.py']`
+- Timestamp: 2026-09-10 11:03:54 UTC
