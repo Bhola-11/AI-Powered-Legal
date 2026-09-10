@@ -263,3 +263,8 @@
 - Feature: `feat(ai): implement LegalAIService with fact extraction and petition drafter`
 - Path Scope: `['apps/ai_engine/services.py', 'apps/ai_engine/apps.py']`
 - Timestamp: 2026-09-10 11:02:12 UTC
+
+### Milestone #060 - 060-ai-copilot-workspace-views
+- Feature: `feat(ai): create AI Legal Copilot interactive workspace view`
+- Path Scope: `['apps/ai_engine/views.py', 'apps/ai_engine/urls.py']`
+- Timestamp: 2026-09-10 11:02:24 UTC
