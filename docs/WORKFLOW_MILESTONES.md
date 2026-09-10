@@ -338,3 +338,8 @@
 - Feature: `feat(statutes): codify Companies Act corporate management and director duties`
 - Path Scope: `['legal_data/statutes/companies_ibc_acts.py']`
 - Timestamp: 2026-09-10 11:05:02 UTC
+
+### Milestone #075 - 075-statutes-corporate-insolvency-full
+- Feature: `feat(statutes): codify Insolvency and Bankruptcy Code CIRP and liquidation regulations`
+- Path Scope: `['legal_data/statutes/companies_full_code.py']`
+- Timestamp: 2026-09-10 11:05:15 UTC
