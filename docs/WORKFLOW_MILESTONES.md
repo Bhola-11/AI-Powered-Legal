@@ -73,3 +73,8 @@
 - Feature: `feat(cases): add opposite parties, advocate assignments and case views`
 - Path Scope: `['apps/cases/views.py', 'apps/cases/urls.py']`
 - Timestamp: 2026-09-10 10:54:50 UTC
+
+### Milestone #022 - 022-cases-timeline-notes
+- Feature: `feat(cases): implement isolated internal case notes and chronological timeline`
+- Path Scope: `['apps/cases/admin.py']`
+- Timestamp: 2026-09-10 10:55:01 UTC
