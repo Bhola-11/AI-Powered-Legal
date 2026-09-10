@@ -5,5 +5,6 @@ app_name = 'evidence'
 
 urlpatterns = [
     path('', views.evidence_register, name='register'),
+    path('register/', views.evidence_register, name='register_alias'),
     path('<uuid:pk>/', views.evidence_detail, name='detail'),
 ]

@@ -4,6 +4,7 @@ from . import views
 app_name = 'legal_research'
 
 urlpatterns = [
+    path('', views.acts_list, name='research_root'),
     path('acts/', views.acts_list, name='acts_list'),
     path('acts/<int:pk>/', views.act_detail, name='act_detail'),
     path('precedents/', views.precedent_list, name='precedent_list'),
