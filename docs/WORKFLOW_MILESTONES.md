@@ -368,3 +368,8 @@
 - Feature: `feat(statutes): codify Industrial Disputes Code and Environmental Protection Enactments`
 - Path Scope: `['legal_data/statutes/labor_environmental_acts.py']`
 - Timestamp: 2026-09-10 11:06:13 UTC
+
+### Milestone #081 - 081-statutes-special-tribunals-code
+- Feature: `feat(statutes): codify Specialized Judicial Tribunals rules for NCLT, DRT and NGT`
+- Path Scope: `['legal_data/statutes/special_tribunals_code.py']`
+- Timestamp: 2026-09-10 11:06:24 UTC
