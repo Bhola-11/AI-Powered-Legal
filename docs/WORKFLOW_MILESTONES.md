@@ -333,3 +333,8 @@
 - Feature: `feat(statutes): codify Arbitration & Conciliation Act Sections 1-86 and Schedules`
 - Path Scope: `['legal_data/statutes/arbitration_full_code.py']`
 - Timestamp: 2026-09-10 11:04:51 UTC
+
+### Milestone #074 - 074-statutes-companies-governance
+- Feature: `feat(statutes): codify Companies Act corporate management and director duties`
+- Path Scope: `['legal_data/statutes/companies_ibc_acts.py']`
+- Timestamp: 2026-09-10 11:05:02 UTC
