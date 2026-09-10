@@ -253,3 +253,8 @@
 - Feature: `feat(audit): create immutable audit trail inspector and security views`
 - Path Scope: `['apps/audit/views.py', 'apps/audit/urls.py']`
 - Timestamp: 2026-09-10 11:01:50 UTC
+
+### Milestone #058 - 058-audit-security-admin
+- Feature: `feat(audit): register audit log viewer and security monitoring in admin`
+- Path Scope: `['apps/audit/admin.py']`
+- Timestamp: 2026-09-10 11:02:01 UTC
