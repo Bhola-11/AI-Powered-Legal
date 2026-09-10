@@ -148,3 +148,8 @@
 - Feature: `feat(tasks): create interactive case task board and Kanban views`
 - Path Scope: `['apps/tasks/views.py', 'apps/tasks/urls.py']`
 - Timestamp: 2026-09-10 10:57:44 UTC
+
+### Milestone #037 - 037-tasks-admin-checklists
+- Feature: `feat(tasks): register case tasks and workflow stages in Django admin`
+- Path Scope: `['apps/tasks/admin.py']`
+- Timestamp: 2026-09-10 10:57:56 UTC
