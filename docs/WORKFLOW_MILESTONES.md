@@ -213,3 +213,8 @@
 - Feature: `feat(orders): register court orders and compliance items in Django admin`
 - Path Scope: `['apps/orders_judgments/admin.py']`
 - Timestamp: 2026-09-10 11:00:17 UTC
+
+### Milestone #050 - 050-notifications-engine-models
+- Feature: `feat(notifications): implement Notification model with multi-type alerts`
+- Path Scope: `['apps/notifications/models.py', 'apps/notifications/apps.py']`
+- Timestamp: 2026-09-10 11:00:28 UTC
