@@ -1,1 +1,11 @@
-__pycache__/\n*.pyc\n*.pyo\ndb.sqlite3\nmedia/\nstaticfiles/\n.env\n.venv/\n
+﻿__pycache__/
+*.pyc
+*.pyo
+*.pyd
+db.sqlite3
+media/
+staticfiles/
+.env
+.venv/
+.idea/
+.vscode/
