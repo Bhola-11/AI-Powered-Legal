@@ -373,3 +373,8 @@
 - Feature: `feat(statutes): codify Specialized Judicial Tribunals rules for NCLT, DRT and NGT`
 - Path Scope: `['legal_data/statutes/special_tribunals_code.py']`
 - Timestamp: 2026-09-10 11:06:24 UTC
+
+### Milestone #082 - 082-statutes-ip-and-cyber-laws
+- Feature: `feat(statutes): codify Trademarks, Patents, Copyright and Cyber Law Enactments`
+- Path Scope: `['legal_data/statutes/ip_cyber_full_code.py']`
+- Timestamp: 2026-09-10 11:06:35 UTC
