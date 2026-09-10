@@ -1,0 +1,33 @@
+<header class="app-navbar">
+    <div class="navbar-brand">
+        <a href="{% url 'accounts:dashboard_redirect' %}">
+            <i class="fa-solid fa-scale-balanced brand-icon"></i>
+            <span class="brand-title">{{ PLATFORM_NAME }}</span>
+        </a>
+    </div>
+    <div class="navbar-search">
+        <form action="{% url 'cases:case_list' %}" method="get">
+            <i class="fa-solid fa-magnifying-glass search-icon"></i>
+            <input type="text" name="q" placeholder="Global Search: Case number, Party, Court, Judge..." class="global-search-input">
+        </form>
+    </div>
+    <div class="navbar-user-section">
+        {% if user.is_authenticated %}
+            <a href="{% url 'notifications:notification_list' %}" class="nav-icon-btn" title="Notifications">
+                <i class="fa-solid fa-bell"></i>
+                <span class="notification-badge">3</span>
+            </a>
+            <a href="{% url 'ai_engine:ai_hub' %}" class="ai-hub-pill">
+                <i class="fa-solid fa-wand-magic-sparkles"></i> AI Copilot
+            </a>
+            <div class="user-dropdown">
+                <span class="user-role-badge">{{ user.get_role_display }}</span>
+                <span class="user-name">{{ user.get_full_name|default:user.username }}</span>
+                <a href="{% url 'accounts:profile' %}" class="profile-link" title="Profile"><i class="fa-solid fa-user-gear"></i></a>
+                <a href="{% url 'accounts:logout' %}" class="logout-link" title="Logout"><i class="fa-solid fa-arrow-right-from-bracket"></i></a>
+            </div>
+        {% else %}
+            <a href="{% url 'accounts:login' %}" class="btn btn-primary">Login</a>
+        {% endif %}
+    </div>
+</header>

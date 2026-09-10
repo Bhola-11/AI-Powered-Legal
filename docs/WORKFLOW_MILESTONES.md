@@ -443,3 +443,8 @@
 - Feature: `feat(pleadings): create certified judicial pleadings and court forms registry`
 - Path Scope: `['legal_data/pleadings/court_forms_registry.py']`
 - Timestamp: 2026-09-10 11:09:01 UTC
+
+### Milestone #096 - 096-templates-base-layout-navigation
+- Feature: `feat(templates): implement master base layout, sidebar, navbar and footer templates`
+- Path Scope: `['templates/base.html', 'templates/navbar.html', 'templates/sidebar.html', 'templates/footer.html', 'templates/messages.html']`
+- Timestamp: 2026-09-10 11:09:14 UTC

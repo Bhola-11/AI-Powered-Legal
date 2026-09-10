@@ -1,0 +1,82 @@
+<aside class="app-sidebar">
+    <nav class="sidebar-nav">
+        <div class="nav-group-title">MAIN NAVIGATION</div>
+        <a href="{% url 'accounts:dashboard_redirect' %}" class="nav-item">
+            <i class="fa-solid fa-gauge-high"></i> Dashboard
+        </a>
+        <a href="{% url 'cases:case_list' %}" class="nav-item">
+            <i class="fa-solid fa-briefcase"></i> Case Management
+        </a>
+        <a href="{% url 'cases:case_intake' %}" class="nav-item">
+            <i class="fa-solid fa-file-circle-plus"></i> Case Intake Wizard
+        </a>
+        <a href="{% url 'hearings:hearing_list' %}" class="nav-item">
+            <i class="fa-solid fa-gavel"></i> Hearings & Calendar
+        </a>
+        <a href="{% url 'hearings:daily_board' %}" class="nav-item">
+            <i class="fa-solid fa-calendar-day"></i> Daily Board
+        </a>
+
+        <div class="nav-group-title">LEGAL OPERATIONS</div>
+        <a href="{% url 'documents:vault' %}" class="nav-item">
+            <i class="fa-solid fa-folder-open"></i> Document Vault
+        </a>
+        <a href="{% url 'evidence:register' %}" class="nav-item">
+            <i class="fa-solid fa-fingerprint"></i> Evidence Register
+        </a>
+        <a href="{% url 'tasks:task_list' %}" class="nav-item">
+            <i class="fa-solid fa-list-check"></i> Tasks & Workflows
+        </a>
+        <a href="{% url 'tasks:kanban' %}" class="nav-item">
+            <i class="fa-solid fa-table-columns"></i> Task Kanban
+        </a>
+        <a href="{% url 'deadlines:deadline_list' %}" class="nav-item">
+            <i class="fa-solid fa-clock"></i> Deadlines & Limitation
+        </a>
+        <a href="{% url 'orders_judgments:order_list' %}" class="nav-item">
+            <i class="fa-solid fa-stamp"></i> Court Orders & Decrees
+        </a>
+
+        <div class="nav-group-title">RESEARCH & INTELLIGENCE</div>
+        <a href="{% url 'ai_engine:ai_hub' %}" class="nav-item highlight">
+            <i class="fa-solid fa-brain"></i> AI Legal Assistant
+        </a>
+        <a href="{% url 'legal_research:acts_list' %}" class="nav-item">
+            <i class="fa-solid fa-book-bookmark"></i> Statutory Codes
+        </a>
+        <a href="{% url 'legal_research:precedent_list' %}" class="nav-item">
+            <i class="fa-solid fa-landmark"></i> Precedents Library
+        </a>
+        <a href="{% url 'legal_research:notebook' %}" class="nav-item">
+            <i class="fa-solid fa-pen-to-square"></i> Research Notebooks
+        </a>
+
+        <div class="nav-group-title">CLIENTS & BILLING</div>
+        <a href="{% url 'clients:client_list' %}" class="nav-item">
+            <i class="fa-solid fa-users"></i> Clients Registry
+        </a>
+        <a href="{% url 'clients:conflict_check' %}" class="nav-item">
+            <i class="fa-solid fa-shield-halved"></i> Conflict Clearance
+        </a>
+        <a href="{% url 'communications:thread_list' %}" class="nav-item">
+            <i class="fa-solid fa-comments"></i> Secure Messages
+        </a>
+        <a href="{% url 'billing:invoice_list' %}" class="nav-item">
+            <i class="fa-solid fa-file-invoice-dollar"></i> Billing & Invoices
+        </a>
+        <a href="{% url 'billing:time_entries' %}" class="nav-item">
+            <i class="fa-solid fa-stopwatch"></i> Billable Hours
+        </a>
+
+        <div class="nav-group-title">ADMINISTRATION</div>
+        <a href="{% url 'courts:court_list' %}" class="nav-item">
+            <i class="fa-solid fa-building-columns"></i> Courts & Judges
+        </a>
+        <a href="{% url 'analytics:reports_dashboard' %}" class="nav-item">
+            <i class="fa-solid fa-chart-line"></i> Analytics & Reports
+        </a>
+        <a href="{% url 'audit:audit_log_view' %}" class="nav-item">
+            <i class="fa-solid fa-shield-virus"></i> Tamper-Evident Audit
+        </a>
+    </nav>
+</aside>
