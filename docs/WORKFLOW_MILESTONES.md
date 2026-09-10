@@ -103,3 +103,8 @@
 - Feature: `feat(documents): add SHA-256 integrity verification, versioning and vault views`
 - Path Scope: `['apps/documents/views.py', 'apps/documents/urls.py']`
 - Timestamp: 2026-09-10 10:55:58 UTC
+
+### Milestone #028 - 028-documents-admin-permissions
+- Feature: `feat(documents): register legal document vault and permissions in admin`
+- Path Scope: `['apps/documents/admin.py']`
+- Timestamp: 2026-09-10 10:56:10 UTC
