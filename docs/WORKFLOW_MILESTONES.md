@@ -168,3 +168,8 @@
 - Feature: `feat(deadlines): register deadline alert triggers and rules in admin`
 - Path Scope: `['apps/deadlines/admin.py']`
 - Timestamp: 2026-09-10 10:58:31 UTC
+
+### Milestone #041 - 041-communications-messaging-models
+- Feature: `feat(communications): implement MessageThread and CaseMessage models`
+- Path Scope: `['apps/communications/models.py', 'apps/communications/apps.py']`
+- Timestamp: 2026-09-10 10:58:42 UTC
