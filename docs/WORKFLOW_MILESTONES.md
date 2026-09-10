@@ -278,3 +278,8 @@
 - Feature: `feat(migrations): apply all initial schema migrations across 19 apps`
 - Path Scope: `['apps/']`
 - Timestamp: 2026-09-10 11:02:46 UTC
+
+### Milestone #063 - 063-statutes-cpc-sections
+- Feature: `feat(statutes): codify Civil Procedure Code Sections 1-158 with practice notes`
+- Path Scope: `['legal_data/statutes/cpc_sections_orders.py']`
+- Timestamp: 2026-09-10 11:02:57 UTC
