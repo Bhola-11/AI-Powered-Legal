@@ -113,3 +113,8 @@
 - Feature: `feat(evidence): implement EvidenceItem model and exhibit markings`
 - Path Scope: `['apps/evidence/models.py', 'apps/evidence/apps.py']`
 - Timestamp: 2026-09-10 10:56:21 UTC
+
+### Milestone #030 - 030-evidence-chain-of-custody
+- Feature: `feat(evidence): add chain-of-custody tracking logs and register views`
+- Path Scope: `['apps/evidence/views.py', 'apps/evidence/urls.py']`
+- Timestamp: 2026-09-10 10:56:32 UTC
