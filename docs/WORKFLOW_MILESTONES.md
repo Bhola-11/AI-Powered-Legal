@@ -58,3 +58,8 @@
 - Feature: `feat(courts): add Judge and Bench directory views with roster schedules`
 - Path Scope: `['apps/courts/views.py', 'apps/courts/urls.py']`
 - Timestamp: 2026-09-10 10:54:17 UTC
+
+### Milestone #019 - 019-courts-admin-directory
+- Feature: `feat(courts): register court complex and courtroom management in admin`
+- Path Scope: `['apps/courts/admin.py']`
+- Timestamp: 2026-09-10 10:54:29 UTC
