@@ -33,3 +33,8 @@
 - Feature: `feat(firms): register law firm administration and practice settings in Django admin`
 - Path Scope: `['apps/firms/admin.py']`
 - Timestamp: 2026-09-10 10:53:20 UTC
+
+### Milestone #014 - 014-clients-profile-models
+- Feature: `feat(clients): create individual, corporate and institutional client models`
+- Path Scope: `['apps/clients/models.py', 'apps/clients/apps.py']`
+- Timestamp: 2026-09-10 10:53:31 UTC
