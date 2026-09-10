@@ -438,3 +438,8 @@
 - Feature: `feat(pleadings): add statutory legal notices, vakalatnamas and caveat templates`
 - Path Scope: `['legal_data/pleadings/notices_agreements_forms.py']`
 - Timestamp: 2026-09-10 11:08:51 UTC
+
+### Milestone #095 - 095-pleadings-court-forms-registry
+- Feature: `feat(pleadings): create certified judicial pleadings and court forms registry`
+- Path Scope: `['legal_data/pleadings/court_forms_registry.py']`
+- Timestamp: 2026-09-10 11:09:01 UTC
