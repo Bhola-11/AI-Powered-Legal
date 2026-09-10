@@ -378,3 +378,8 @@
 - Feature: `feat(statutes): codify Trademarks, Patents, Copyright and Cyber Law Enactments`
 - Path Scope: `['legal_data/statutes/ip_cyber_full_code.py']`
 - Timestamp: 2026-09-10 11:06:35 UTC
+
+### Milestone #083 - 083-precedents-constitutional-rulings
+- Feature: `feat(precedents): catalog Constitutional Law landmark rulings and ratio decidendi`
+- Path Scope: `['legal_data/precedents/constitutional_precedents.py']`
+- Timestamp: 2026-09-10 11:06:46 UTC
