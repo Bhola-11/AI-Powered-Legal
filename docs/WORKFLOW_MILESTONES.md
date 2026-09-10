@@ -153,3 +153,8 @@
 - Feature: `feat(tasks): register case tasks and workflow stages in Django admin`
 - Path Scope: `['apps/tasks/admin.py']`
 - Timestamp: 2026-09-10 10:57:56 UTC
+
+### Milestone #038 - 038-deadlines-limitation-models
+- Feature: `feat(deadlines): implement CaseDeadline and statutory limitation models`
+- Path Scope: `['apps/deadlines/models.py', 'apps/deadlines/apps.py']`
+- Timestamp: 2026-09-10 10:58:09 UTC
