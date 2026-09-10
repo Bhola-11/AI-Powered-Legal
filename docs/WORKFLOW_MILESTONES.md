@@ -293,3 +293,8 @@
 - Feature: `feat(statutes): codify Criminal Procedure Code investigation and arrest rules`
 - Path Scope: `['legal_data/statutes/crpc_bnss_code.py']`
 - Timestamp: 2026-09-10 11:03:20 UTC
+
+### Milestone #066 - 066-statutes-crpc-trials-bail
+- Feature: `feat(statutes): codify Criminal Procedure Code trials, bail and appeals`
+- Path Scope: `['legal_data/statutes/crpc_full_code.py']`
+- Timestamp: 2026-09-10 11:03:31 UTC
