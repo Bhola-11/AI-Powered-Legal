@@ -413,3 +413,8 @@
 - Feature: `feat(precedents): catalog Supreme Court of India comprehensive precedent repository`
 - Path Scope: `['legal_data/precedents/supreme_court_corpus.py']`
 - Timestamp: 2026-09-10 11:07:54 UTC
+
+### Milestone #090 - 090-precedents-high-courts-full
+- Feature: `feat(precedents): catalog High Courts commercial appellate jurisprudence repository`
+- Path Scope: `['legal_data/precedents/high_courts_corpus.py']`
+- Timestamp: 2026-09-10 11:08:06 UTC
