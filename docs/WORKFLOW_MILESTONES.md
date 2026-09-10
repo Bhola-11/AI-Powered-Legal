@@ -18,3 +18,8 @@
 - Feature: `feat(accounts): configure customized Django admin for user and role management`
 - Path Scope: `['apps/accounts/admin.py']`
 - Timestamp: 2026-09-10 10:52:45 UTC
+
+### Milestone #011 - 011-firms-lawfirm-models
+- Feature: `feat(firms): implement LawFirm and firm settings data models`
+- Path Scope: `['apps/firms/models.py', 'apps/firms/apps.py']`
+- Timestamp: 2026-09-10 10:52:57 UTC
