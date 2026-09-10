@@ -463,3 +463,8 @@
 - Feature: `feat(templates): implement hearing list, daily board and calendar templates`
 - Path Scope: `['templates/hearings/']`
 - Timestamp: 2026-09-10 11:09:48 UTC
+
+### Milestone #100 - 100-templates-documents-evidence-views
+- Feature: `feat(templates): implement document vault and evidence register templates`
+- Path Scope: `['templates/documents/', 'templates/evidence/']`
+- Timestamp: 2026-09-10 11:09:59 UTC
