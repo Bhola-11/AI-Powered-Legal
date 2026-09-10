@@ -1,59 +1,90 @@
 {% extends 'base.html' %}
-{% block title %}CivicLaw Platform Authentication{% endblock %}
-{% block page_title %}CivicLaw Platform Authentication{% endblock %}
+{% block title %}Sign In - CivicLaw Enterprise Legal Suite{% endblock %}
+{% block page_title %}Sign In to CivicLaw Enterprise{% endblock %}
 
 {% block content %}
-<div class="civic-card">
-    <div class="card-header">
-        <h3><i class="fa-solid fa-layer-group"></i> CivicLaw Platform Authentication</h3>
-        <div class="header-tools">
-            <span class="badge badge-primary">Enterprise Ready</span>
-        </div>
-    </div>
-    <div class="card-body">
-        <p class="text-muted">Enterprise module view for CivicLaw Platform Authentication. Full operational workflows, search filters, and record management enabled.</p>
-        
-        <div class="filter-bar">
-            <div class="filter-inputs">
-                <input type="text" placeholder="Filter by reference, keyword or date..." class="form-control">
+<div style="max-width: 540px; margin: 2rem auto;">
+    <div class="civic-card" style="box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1); border-radius: 12px; overflow: hidden;">
+        <div class="card-header" style="background: linear-gradient(135deg, #0f172a, #1e293b); color: #ffffff; padding: 1.5rem; text-align: center; display: block;">
+            <div style="font-size: 2.25rem; color: var(--accent-gold); margin-bottom: 0.5rem;">
+                <i class="fa-solid fa-scale-balanced"></i>
             </div>
-            <div class="filter-actions">
-                <button class="btn btn-primary"><i class="fa-solid fa-filter"></i> Apply Filter</button>
-                <button class="btn btn-outline"><i class="fa-solid fa-arrows-rotate"></i> Reset</button>
-            </div>
+            <h3 style="color: #ffffff; margin: 0; font-size: 1.35rem;">CivicLaw Legal Case Management</h3>
+            <p style="color: #94a3b8; font-size: 0.85rem; margin: 0.35rem 0 0 0;">AI-Powered Court Workflow & Practice Intelligence Platform</p>
         </div>
 
-        <div class="table-responsive">
-            <table class="data-table">
-                <thead>
-                    <tr>
-                        <th>Identifier / Record</th>
-                        <th>Subject Matter</th>
-                        <th>Assigned Authority</th>
-                        <th>Current State</th>
-                        <th>Timeline / Due Date</th>
-                        <th>Action</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td><strong>REF-2026-001</strong></td>
-                        <td>Corporate Commercial Injunction & Specific Performance</td>
-                        <td>Senior Counsel / Presiding Bench</td>
-                        <td><span class="badge badge-success">Active & Compliant</span></td>
-                        <td>Next Hearing: Oct 12, 2026</td>
-                        <td><button class="btn btn-sm btn-outline">Inspect</button></td>
-                    </tr>
-                    <tr>
-                        <td><strong>REF-2026-002</strong></td>
-                        <td>Bail Application under Section 439 CrPC</td>
-                        <td>Defense Counsel / Sessions Judge</td>
-                        <td><span class="badge badge-warning">Hearing Scheduled</span></td>
-                        <td>Listed: Tomorrow 10:30 AM</td>
-                        <td><button class="btn btn-sm btn-outline">Inspect</button></td>
-                    </tr>
-                </tbody>
-            </table>
+        <div class="card-body" style="padding: 2rem;">
+            <!-- 1-Click Quick Demo Login Section -->
+            <div style="background-color: #f0fdf4; border: 1px solid #bbf7d0; border-radius: 8px; padding: 1.25rem; margin-bottom: 1.75rem; text-align: center;">
+                <span style="font-size: 0.8rem; font-weight: 700; text-transform: uppercase; color: #15803d; letter-spacing: 0.05em; display: block; margin-bottom: 0.75rem;">
+                    <i class="fa-solid fa-bolt" style="color: #eab308;"></i> Instant Evaluation Access (No Typing Required)
+                </span>
+                <div style="display: flex; flex-direction: column; gap: 0.75rem;">
+                    <a href="{% url 'accounts:quick_login' role='lawyer' %}{% if next %}?next={{ next }}{% endif %}" 
+                       class="btn btn-primary" 
+                       style="background: linear-gradient(135deg, #0284c7, #0369a1); font-size: 0.95rem; padding: 0.75rem 1rem; border-radius: 6px; justify-content: center; text-decoration: none; font-weight: 700;">
+                        <i class="fa-solid fa-user-tie"></i> 1-Click Login as Advocate Vikram Kapoor
+                    </a>
+                    <a href="{% url 'accounts:quick_login' role='admin' %}{% if next %}?next={{ next }}{% endif %}" 
+                       class="btn btn-outline" 
+                       style="font-size: 0.85rem; padding: 0.5rem 1rem; border-radius: 6px; justify-content: center; text-decoration: none; border-color: #cbd5e1; color: #334155;">
+                        <i class="fa-solid fa-shield-halved"></i> 1-Click Login as Super Admin
+                    </a>
+                </div>
+            </div>
+
+            <div style="display: flex; align-items: center; text-align: center; margin: 1.5rem 0; color: #94a3b8;">
+                <div style="flex: 1; border-bottom: 1px solid #e2e8f0;"></div>
+                <span style="padding: 0 0.75rem; font-size: 0.75rem; text-transform: uppercase; font-weight: 700; color: #64748b;">Or Sign In with Credentials</span>
+                <div style="flex: 1; border-bottom: 1px solid #e2e8f0;"></div>
+            </div>
+
+            {% if form.errors %}
+            <div class="alert alert-danger" style="background-color: #fee2e2; border-left: 4px solid #b91c1c; color: #991b1b; padding: 0.75rem; border-radius: 4px; margin-bottom: 1.25rem; font-size: 0.85rem;">
+                <i class="fa-solid fa-circle-exclamation"></i> Invalid username or password. Please verify credentials below.
+            </div>
+            {% endif %}
+
+            <form method="post" action="{% url 'accounts:login' %}{% if next %}?next={{ next }}{% endif %}">
+                {% csrf_token %}
+                <input type="hidden" name="next" value="{{ next }}">
+
+                <div style="margin-bottom: 1.25rem;">
+                    <label for="id_username" style="display: block; font-size: 0.8rem; font-weight: 700; text-transform: uppercase; color: #475569; margin-bottom: 0.35rem;">
+                        Username or Email *
+                    </label>
+                    <input type="text" name="username" id="id_username" class="form-control" 
+                           placeholder="e.g. advocate_kapoor" value="advocate_kapoor" required autofocus style="padding: 0.65rem 0.85rem;">
+                </div>
+
+                <div style="margin-bottom: 1.5rem;">
+                    <label for="id_password" style="display: block; font-size: 0.8rem; font-weight: 700; text-transform: uppercase; color: #475569; margin-bottom: 0.35rem;">
+                        Secure Password *
+                    </label>
+                    <input type="password" name="password" id="id_password" class="form-control" 
+                           placeholder="Enter password" value="Lawyer@12345" required style="padding: 0.65rem 0.85rem;">
+                </div>
+
+                <button type="submit" class="btn btn-primary" style="width: 100%; padding: 0.75rem; justify-content: center; font-size: 1rem; border-radius: 6px;">
+                    <i class="fa-solid fa-arrow-right-to-bracket"></i> Sign In to Legal Workspace
+                </button>
+            </form>
+
+            <div style="margin-top: 1.75rem; padding-top: 1.25rem; border-top: 1px solid #e2e8f0; font-size: 0.8rem; color: #64748b;">
+                <div style="font-weight: 700; color: #1e293b; margin-bottom: 0.35rem;">Pre-Configured Demo Credentials:</div>
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.5rem;">
+                    <div style="background-color: #f8fafc; padding: 0.5rem; border-radius: 4px; border: 1px solid #e2e8f0;">
+                        <strong>Advocate Role:</strong><br>
+                        <code>advocate_kapoor</code><br>
+                        <code>Lawyer@12345</code>
+                    </div>
+                    <div style="background-color: #f8fafc; padding: 0.5rem; border-radius: 4px; border: 1px solid #e2e8f0;">
+                        <strong>Super Admin:</strong><br>
+                        <code>admin</code><br>
+                        <code>Admin@12345</code>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>

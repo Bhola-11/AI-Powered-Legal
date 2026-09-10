@@ -30,7 +30,10 @@
                 <a href="{% url 'accounts:logout' %}" class="logout-link" title="Logout"><i class="fa-solid fa-arrow-right-from-bracket"></i></a>
             </div>
         {% else %}
-            <a href="{% url 'accounts:login' %}" class="btn btn-primary">Login</a>
+            <a href="{% url 'accounts:quick_login' role='lawyer' %}" class="btn btn-sm btn-outline" style="color: var(--accent-gold); border-color: var(--accent-gold); font-weight: 700;">
+                <i class="fa-solid fa-bolt"></i> 1-Click Login
+            </a>
+            <a href="{% url 'accounts:login' %}" class="btn btn-sm btn-primary">Sign In</a>
         {% endif %}
     </div>
 </header>

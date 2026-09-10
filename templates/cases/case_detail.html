@@ -21,7 +21,7 @@
     </div>
     <div class="banner-badge">
         <span class="badge badge-success" style="font-size: 0.85rem; padding: 0.5rem 0.85rem;">
-            {{ case.get_stage_display|default:'HEARING_SCHEDULED' }}
+            {{ case.get_status_display|default:'Hearing Scheduled' }}
         </span>
     </div>
 </div>

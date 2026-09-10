@@ -10,11 +10,36 @@ from .forms import CivicLawLoginForm, CivicLawRegistrationForm, UserProfileForm
 class CivicLawLoginView(LoginView):
     template_name = 'accounts/login.html'
     authentication_form = CivicLawLoginForm
+    redirect_authenticated_user = True
+
+    def get_success_url(self):
+        next_url = self.request.GET.get('next') or self.request.POST.get('next')
+        if next_url:
+            return next_url
+        return reverse_lazy('accounts:dashboard_redirect')
 
     def form_valid(self, form):
         user = form.get_user()
         login(self.request, user)
+        next_url = self.request.GET.get('next') or self.request.POST.get('next')
+        if next_url:
+            return redirect(next_url)
         return redirect('accounts:dashboard_redirect')
+
+def quick_login_view(request, role='lawyer'):
+    """1-Click Instant Login for demo and testing without password entry."""
+    if role in ('admin', 'super_admin'):
+        user = User.objects.filter(username='admin').first()
+    else:
+        user = User.objects.filter(username='advocate_kapoor').first()
+        if not user:
+            user = User.objects.filter(role=Role.LAWYER).first()
+    if not user:
+        user = User.objects.first()
+    if user:
+        login(request, user)
+    next_url = request.GET.get('next') or '/cases/'
+    return redirect(next_url)
 
 def logout_view(request):
     logout(request)

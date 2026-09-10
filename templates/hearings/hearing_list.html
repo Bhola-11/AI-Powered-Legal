@@ -43,7 +43,7 @@
                 <tbody>
                     {% for h in hearings %}
                     <tr>
-                        <td><strong>{{ h.hearing_date|date:"M d, Y" }}</strong><br><small class="text-muted">{{ h.hearing_date|time:"H:i A" }}</small></td>
+                        <td><strong>{{ h.hearing_date|date:"M d, Y" }}</strong><br><small class="text-muted">{{ h.start_time|time:"H:i A" }}</small></td>
                         <td>
                             <strong><a href="{% url 'cases:case_detail' h.case.id %}" style="color: var(--primary-color); text-decoration: none;">{{ h.case.case_number }}</a></strong><br>
                             <small class="text-muted">{{ h.case.title|truncatechars:40 }}</small>
@@ -52,8 +52,8 @@
                         <td>{{ h.courtroom.room_number|default:'Courtroom 04' }} &bull; {{ h.judge.name|default:'Presiding Bench' }}</td>
                         <td><span class="badge badge-info">{{ h.hearing_type }}</span></td>
                         <td>
-                            <span class="badge {% if h.status == 'COMPLETED' %}badge-success{% elif h.status == 'SCHEDULED' %}badge-warning{% else %}badge-secondary{% endif %}">
-                                {{ h.get_status_display|default:h.status }}
+                            <span class="badge {% if h.is_completed %}badge-success{% else %}badge-warning{% endif %}">
+                                {% if h.is_completed %}COMPLETED{% else %}SCHEDULED{% endif %}
                             </span>
                         </td>
                         <td>

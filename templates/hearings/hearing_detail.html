@@ -14,13 +14,13 @@
         <h3>{{ hearing.case.title|default:'Corporate Commercial Arbitration Hearing' }}</h3>
         <p>
             <strong>Date:</strong> {{ hearing.hearing_date|date:"F d, Y"|default:'October 15, 2026' }} &bull;
-            <strong>Time:</strong> {{ hearing.hearing_date|time:"H:i A"|default:'10:30 AM' }} &bull;
+            <strong>Time:</strong> {{ hearing.start_time|time:"H:i A"|default:'10:30 AM' }} &bull;
             <strong>Forum:</strong> {{ hearing.case.court_complex.name|default:'High Court of Delhi' }}
         </p>
     </div>
     <div class="banner-badge">
-        <span class="badge badge-warning" style="font-size: 0.85rem; padding: 0.5rem 0.85rem;">
-            {{ hearing.get_status_display|default:'SCHEDULED' }}
+        <span class="badge {% if hearing.is_completed %}badge-success{% else %}badge-warning{% endif %}" style="font-size: 0.85rem; padding: 0.5rem 0.85rem;">
+            {% if hearing.is_completed %}COMPLETED{% else %}SCHEDULED{% endif %}
         </span>
     </div>
 </div>

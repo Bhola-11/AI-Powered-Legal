@@ -52,8 +52,8 @@
                         <td>{{ c.client.display_name|default:'Internal' }}</td>
                         <td>{{ c.court_complex.name|default:'Unassigned' }}</td>
                         <td>
-                            <span class="badge {% if c.status == 'OPEN' %}badge-success{% elif c.status == 'PENDING' %}badge-warning{% else %}badge-info{% endif %}">
-                                {{ c.get_stage_display|default:c.stage }}
+                            <span class="badge {% if c.status == 'CLOSED' %}badge-secondary{% elif c.status == 'HEARING_SCHEDULED' %}badge-warning{% else %}badge-success{% endif %}">
+                                {{ c.get_status_display }}
                             </span>
                         </td>
                         <td>{{ c.next_hearing_date|default:'TBD' }}</td>
