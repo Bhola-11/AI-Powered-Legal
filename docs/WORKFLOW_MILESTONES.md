@@ -63,3 +63,8 @@
 - Feature: `feat(courts): register court complex and courtroom management in admin`
 - Path Scope: `['apps/courts/admin.py']`
 - Timestamp: 2026-09-10 10:54:29 UTC
+
+### Milestone #020 - 020-cases-core-lifecycle-models
+- Feature: `feat(cases): implement 16-stage case lifecycle and Case model`
+- Path Scope: `['apps/cases/models.py', 'apps/cases/apps.py']`
+- Timestamp: 2026-09-10 10:54:39 UTC
