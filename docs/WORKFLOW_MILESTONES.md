@@ -198,3 +198,8 @@
 - Feature: `feat(billing): configure payment receipts and billing ledger in admin`
 - Path Scope: `['apps/billing/admin.py']`
 - Timestamp: 2026-09-10 10:59:43 UTC
+
+### Milestone #047 - 047-orders-decrees-models
+- Feature: `feat(orders): implement CourtOrder and ComplianceItem models`
+- Path Scope: `['apps/orders_judgments/models.py', 'apps/orders_judgments/apps.py']`
+- Timestamp: 2026-09-10 10:59:55 UTC
