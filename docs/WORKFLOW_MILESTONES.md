@@ -83,3 +83,8 @@
 - Feature: `feat(hearings): implement Hearing model and hearing classification types`
 - Path Scope: `['apps/hearings/models.py', 'apps/hearings/apps.py']`
 - Timestamp: 2026-09-10 10:55:11 UTC
+
+### Milestone #024 - 024-hearings-daily-board
+- Feature: `feat(hearings): create Daily Board, cause list display and calendar views`
+- Path Scope: `['apps/hearings/views.py', 'apps/hearings/urls.py']`
+- Timestamp: 2026-09-10 10:55:22 UTC
