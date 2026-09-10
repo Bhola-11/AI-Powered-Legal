@@ -283,3 +283,8 @@
 - Feature: `feat(statutes): codify Civil Procedure Code Sections 1-158 with practice notes`
 - Path Scope: `['legal_data/statutes/cpc_sections_orders.py']`
 - Timestamp: 2026-09-10 11:02:57 UTC
+
+### Milestone #064 - 064-statutes-cpc-orders
+- Feature: `feat(statutes): codify Civil Procedure Code Orders 1-51 and procedural rules`
+- Path Scope: `['legal_data/statutes/cpc_full_code.py']`
+- Timestamp: 2026-09-10 11:03:09 UTC
