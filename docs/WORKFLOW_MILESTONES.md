@@ -433,3 +433,8 @@
 - Feature: `feat(pleadings): add Article 32/226 writ petitions and special leave petition forms`
 - Path Scope: `['legal_data/pleadings/writ_appellate_pleadings_templates.py']`
 - Timestamp: 2026-09-10 11:08:39 UTC
+
+### Milestone #094 - 094-pleadings-notices-agreements
+- Feature: `feat(pleadings): add statutory legal notices, vakalatnamas and caveat templates`
+- Path Scope: `['legal_data/pleadings/notices_agreements_forms.py']`
+- Timestamp: 2026-09-10 11:08:51 UTC
