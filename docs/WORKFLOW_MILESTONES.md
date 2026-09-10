@@ -218,3 +218,8 @@
 - Feature: `feat(notifications): implement Notification model with multi-type alerts`
 - Path Scope: `['apps/notifications/models.py', 'apps/notifications/apps.py']`
 - Timestamp: 2026-09-10 11:00:28 UTC
+
+### Milestone #051 - 051-notifications-center-views
+- Feature: `feat(notifications): create in-app notification center and mark-read views`
+- Path Scope: `['apps/notifications/views.py', 'apps/notifications/urls.py']`
+- Timestamp: 2026-09-10 11:00:39 UTC
