@@ -43,3 +43,8 @@
 - Feature: `feat(clients): implement KYC document verification pipeline and client views`
 - Path Scope: `['apps/clients/views.py', 'apps/clients/urls.py']`
 - Timestamp: 2026-09-10 10:53:43 UTC
+
+### Milestone #016 - 016-clients-conflict-engine
+- Feature: `feat(clients): configure conflict of interest clearance model and admin`
+- Path Scope: `['apps/clients/admin.py']`
+- Timestamp: 2026-09-10 10:53:53 UTC
