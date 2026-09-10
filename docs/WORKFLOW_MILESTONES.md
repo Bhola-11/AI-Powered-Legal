@@ -318,3 +318,8 @@
 - Feature: `feat(statutes): codify Law of Evidence electronic records and certificate rules`
 - Path Scope: `['legal_data/statutes/evidence_full_code.py']`
 - Timestamp: 2026-09-10 11:04:16 UTC
+
+### Milestone #071 - 071-statutes-limitation-sections
+- Feature: `feat(statutes): codify Limitation Act Sections 1-32 and 137 Schedule Articles`
+- Path Scope: `['legal_data/statutes/limitation_act_schedules.py']`
+- Timestamp: 2026-09-10 11:04:28 UTC
