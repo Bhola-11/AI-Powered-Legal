@@ -183,3 +183,8 @@
 - Feature: `feat(communications): register message threads and attachments in admin`
 - Path Scope: `['apps/communications/admin.py']`
 - Timestamp: 2026-09-10 10:59:04 UTC
+
+### Milestone #044 - 044-billing-ledger-models
+- Feature: `feat(billing): implement BillableTimeEntry, CaseExpense and Invoice models`
+- Path Scope: `['apps/billing/models.py', 'apps/billing/apps.py']`
+- Timestamp: 2026-09-10 10:59:19 UTC
