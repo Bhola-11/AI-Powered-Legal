@@ -188,3 +188,8 @@
 - Feature: `feat(billing): implement BillableTimeEntry, CaseExpense and Invoice models`
 - Path Scope: `['apps/billing/models.py', 'apps/billing/apps.py']`
 - Timestamp: 2026-09-10 10:59:19 UTC
+
+### Milestone #045 - 045-billing-invoices-views
+- Feature: `feat(billing): create invoice generation, time tracking and billing views`
+- Path Scope: `['apps/billing/views.py', 'apps/billing/urls.py']`
+- Timestamp: 2026-09-10 10:59:31 UTC
