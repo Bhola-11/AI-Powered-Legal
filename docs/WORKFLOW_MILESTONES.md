@@ -223,3 +223,8 @@
 - Feature: `feat(notifications): create in-app notification center and mark-read views`
 - Path Scope: `['apps/notifications/views.py', 'apps/notifications/urls.py']`
 - Timestamp: 2026-09-10 11:00:39 UTC
+
+### Milestone #052 - 052-notifications-admin-alerts
+- Feature: `feat(notifications): register system notifications in Django admin`
+- Path Scope: `['apps/notifications/admin.py']`
+- Timestamp: 2026-09-10 11:00:51 UTC
