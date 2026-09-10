@@ -163,3 +163,8 @@
 - Feature: `feat(deadlines): create limitation calculator and deadline tracker views`
 - Path Scope: `['apps/deadlines/views.py', 'apps/deadlines/urls.py']`
 - Timestamp: 2026-09-10 10:58:20 UTC
+
+### Milestone #040 - 040-deadlines-alerts-admin
+- Feature: `feat(deadlines): register deadline alert triggers and rules in admin`
+- Path Scope: `['apps/deadlines/admin.py']`
+- Timestamp: 2026-09-10 10:58:31 UTC
