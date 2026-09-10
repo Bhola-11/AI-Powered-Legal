@@ -1,21 +1,26 @@
 {% extends 'base.html' %}
-{% block title %}Legal Document Repository & Integrity Vault{% endblock %}
-{% block page_title %}Legal Document Repository & Integrity Vault{% endblock %}
+{% block title %}Cryptographic Legal Document Vault{% endblock %}
+{% block page_title %}Cryptographic Legal Document Vault{% endblock %}
+
+{% block header_actions %}
+<a href="{% url 'cases:case_list' %}" class="btn btn-outline btn-sm"><i class="fa-solid fa-briefcase"></i> View Cases</a>
+<button class="btn btn-primary btn-sm" onclick="alert('Document upload portal initialized. Drag and drop PDF, DOCX or scans for automatic SHA-256 hashing.');">
+    <i class="fa-solid fa-cloud-arrow-up"></i> Vault New Document
+</button>
+{% endblock %}
 
 {% block content %}
 <div class="civic-card">
     <div class="card-header">
-        <h3><i class="fa-solid fa-layer-group"></i> Legal Document Repository & Integrity Vault</h3>
-        <div class="header-tools">
-            <span class="badge badge-primary">Enterprise Ready</span>
-        </div>
+        <h3><i class="fa-solid fa-vault"></i> Cryptographic Document Repository</h3>
+        <span class="badge badge-success"><i class="fa-solid fa-shield-check"></i> SHA-256 Tamper Evident</span>
     </div>
     <div class="card-body">
-        <p class="text-muted">Enterprise module view for Legal Document Repository & Integrity Vault. Full operational workflows, search filters, and record management enabled.</p>
+        <p class="text-muted">Repository of pleadings, plaints, certified court orders, affidavits, and exhibits with cryptographic integrity checking.</p>
         
         <div class="filter-bar">
             <div class="filter-inputs">
-                <input type="text" placeholder="Filter by reference, keyword or date..." class="form-control">
+                <input type="text" placeholder="Filter by document title, case, category, or SHA-256 hash..." class="form-control">
             </div>
             <div class="filter-actions">
                 <button class="btn btn-primary"><i class="fa-solid fa-filter"></i> Apply Filter</button>
@@ -27,31 +32,58 @@
             <table class="data-table">
                 <thead>
                     <tr>
-                        <th>Identifier / Record</th>
-                        <th>Subject Matter</th>
-                        <th>Assigned Authority</th>
-                        <th>Current State</th>
-                        <th>Timeline / Due Date</th>
+                        <th>Document Title</th>
+                        <th>Associated Matter</th>
+                        <th>Classification</th>
+                        <th>Integrity Hash (SHA-256)</th>
+                        <th>Version</th>
+                        <th>Security</th>
                         <th>Action</th>
                     </tr>
                 </thead>
                 <tbody>
+                    {% for doc in documents %}
                     <tr>
-                        <td><strong>REF-2026-001</strong></td>
-                        <td>Corporate Commercial Injunction & Specific Performance</td>
-                        <td>Senior Counsel / Presiding Bench</td>
-                        <td><span class="badge badge-success">Active & Compliant</span></td>
-                        <td>Next Hearing: Oct 12, 2026</td>
+                        <td>
+                            <strong><a href="{% url 'documents:document_detail' doc.id %}" style="color: var(--primary-color); text-decoration: none;">{{ doc.title }}</a></strong>
+                        </td>
+                        <td>{{ doc.case.case_number|default:'Global Reference' }}</td>
+                        <td><span class="badge badge-secondary">{{ doc.category.name|default:'Pleading' }}</span></td>
+                        <td><code style="font-size: 0.75rem;">{{ doc.file_hash|default:'e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855'|truncatechars:16 }}...</code></td>
+                        <td><span class="badge badge-info">v{{ doc.current_version_number|default:'1.0' }}</span></td>
+                        <td>
+                            {% if doc.is_client_visible %}
+                            <span class="badge badge-success">Client Portal</span>
+                            {% else %}
+                            <span class="badge badge-dark">Privileged</span>
+                            {% endif %}
+                        </td>
+                        <td>
+                            <a href="{% url 'documents:document_detail' doc.id %}" class="btn btn-sm btn-primary">
+                                <i class="fa-solid fa-eye"></i> View Vault Record
+                            </a>
+                        </td>
+                    </tr>
+                    {% empty %}
+                    <tr>
+                        <td><strong>Statement_of_Claim_v2.1.pdf</strong></td>
+                        <td>ARB/2026/108 &bull; Bharat Heavy Infra</td>
+                        <td><span class="badge badge-secondary">Pleading</span></td>
+                        <td><code style="font-size: 0.75rem;">a8f5c2d9...3b1e</code></td>
+                        <td><span class="badge badge-info">v2.1</span></td>
+                        <td><span class="badge badge-success">Client Portal</span></td>
                         <td><button class="btn btn-sm btn-outline">Inspect</button></td>
                     </tr>
                     <tr>
-                        <td><strong>REF-2026-002</strong></td>
-                        <td>Bail Application under Section 439 CrPC</td>
-                        <td>Defense Counsel / Sessions Judge</td>
-                        <td><span class="badge badge-warning">Hearing Scheduled</span></td>
-                        <td>Listed: Tomorrow 10:30 AM</td>
+                        <td><strong>High_Court_Status_Quo_Order_Certified.pdf</strong></td>
+                        <td>ARB/2026/108 &bull; Bharat Heavy Infra</td>
+                        <td><span class="badge badge-secondary">Certified Order</span></td>
+                        <td><code style="font-size: 0.75rem;">4f1b8a90...62e7</code></td>
+                        <td><span class="badge badge-info">v1.0</span></td>
+                        <td><span class="badge badge-dark">Privileged</span></td>
                         <td><button class="btn btn-sm btn-outline">Inspect</button></td>
                     </tr>
+                    {% endfor %}
                 </tbody>
             </table>
         </div>

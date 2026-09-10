@@ -1,59 +1,118 @@
 {% extends 'base.html' %}
-{% block title %}Interactive Case Workflow Kanban Board{% endblock %}
-{% block page_title %}Interactive Case Workflow Kanban Board{% endblock %}
+{% block title %}Litigation Task Kanban Board{% endblock %}
+{% block page_title %}Litigation Task Kanban Board{% endblock %}
+
+{% block header_actions %}
+<a href="{% url 'tasks:task_list' %}" class="btn btn-outline btn-sm"><i class="fa-solid fa-list"></i> Table View</a>
+<a href="{% url 'deadlines:deadline_list' %}" class="btn btn-outline btn-sm"><i class="fa-solid fa-clock"></i> Deadlines</a>
+<button class="btn btn-primary btn-sm" onclick="alert('Task creator opened. Specify matter, assignee, statutory deadline, and checklist items.');">
+    <i class="fa-solid fa-plus"></i> New Task
+</button>
+{% endblock %}
 
 {% block content %}
-<div class="civic-card">
-    <div class="card-header">
-        <h3><i class="fa-solid fa-layer-group"></i> Interactive Case Workflow Kanban Board</h3>
-        <div class="header-tools">
-            <span class="badge badge-primary">Enterprise Ready</span>
+<div class="filter-bar" style="margin-bottom: 1.5rem;">
+    <div class="filter-inputs">
+        <input type="text" placeholder="Filter tasks by title, matter, or assignee..." class="form-control">
+    </div>
+    <div class="filter-actions">
+        <button class="btn btn-primary"><i class="fa-solid fa-filter"></i> Apply Filter</button>
+        <button class="btn btn-outline"><i class="fa-solid fa-arrows-rotate"></i> Reset</button>
+    </div>
+</div>
+
+<div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.25rem;">
+    <!-- Column 1: Pending / Intake -->
+    <div style="background-color: #f1f5f9; border-radius: 8px; padding: 1rem; border-top: 4px solid #94a3b8;">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+            <h4 style="margin: 0; font-size: 0.95rem; font-weight: 700; color: #1e293b;">PENDING (3)</h4>
+            <span class="badge badge-secondary">To Do</span>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 0.75rem;">
+            <div class="civic-card" style="padding: 0.85rem; cursor: pointer;" onclick="alert('Task: Draft Vakalatnama and verify bar council credentials.');">
+                <span class="badge badge-warning" style="margin-bottom: 0.35rem;">Medium Priority</span>
+                <strong style="display: block; font-size: 0.875rem;">Draft Vakalatnama & Memo</strong>
+                <small class="text-muted" style="display: block; margin-top: 0.25rem;">Matter: ARB/2026/108</small>
+                <div style="display: flex; justify-content: space-between; margin-top: 0.5rem; font-size: 0.75rem; color: #64748b;">
+                    <span><i class="fa-solid fa-user"></i> Paralegal</span>
+                    <span><i class="fa-solid fa-calendar"></i> In 2 days</span>
+                </div>
+            </div>
+            <div class="civic-card" style="padding: 0.85rem; cursor: pointer;" onclick="alert('Task: Collect certified copy of trial court judgment.');">
+                <span class="badge badge-secondary" style="margin-bottom: 0.35rem;">Standard</span>
+                <strong style="display: block; font-size: 0.875rem;">Collect Certified Decree Copy</strong>
+                <small class="text-muted" style="display: block; margin-top: 0.25rem;">Matter: CS/2025/1402</small>
+                <div style="display: flex; justify-content: space-between; margin-top: 0.5rem; font-size: 0.75rem; color: #64748b;">
+                    <span><i class="fa-solid fa-user"></i> Registry Clerk</span>
+                    <span><i class="fa-solid fa-calendar"></i> In 4 days</span>
+                </div>
+            </div>
         </div>
     </div>
-    <div class="card-body">
-        <p class="text-muted">Enterprise module view for Interactive Case Workflow Kanban Board. Full operational workflows, search filters, and record management enabled.</p>
-        
-        <div class="filter-bar">
-            <div class="filter-inputs">
-                <input type="text" placeholder="Filter by reference, keyword or date..." class="form-control">
+
+    <!-- Column 2: In Progress / Drafting -->
+    <div style="background-color: #f1f5f9; border-radius: 8px; padding: 1rem; border-top: 4px solid #0284c7;">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+            <h4 style="margin: 0; font-size: 0.95rem; font-weight: 700; color: #1e293b;">IN DRAFTING (2)</h4>
+            <span class="badge badge-info">Active</span>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 0.75rem;">
+            <div class="civic-card" style="padding: 0.85rem; cursor: pointer;" onclick="alert('Task: Draft Written Statement under Order VIII Rule 1 CPC.');">
+                <span class="badge badge-danger" style="margin-bottom: 0.35rem;">High Urgency</span>
+                <strong style="display: block; font-size: 0.875rem;">Written Statement O.VIII R.1</strong>
+                <small class="text-muted" style="display: block; margin-top: 0.25rem;">Matter: Apex Transit Dispute</small>
+                <div style="display: flex; justify-content: space-between; margin-top: 0.5rem; font-size: 0.75rem; color: #64748b;">
+                    <span><i class="fa-solid fa-user"></i> Adv. Kapoor</span>
+                    <span class="text-danger"><strong><i class="fa-solid fa-clock"></i> 3 days left</strong></span>
+                </div>
             </div>
-            <div class="filter-actions">
-                <button class="btn btn-primary"><i class="fa-solid fa-filter"></i> Apply Filter</button>
-                <button class="btn btn-outline"><i class="fa-solid fa-arrows-rotate"></i> Reset</button>
+            <div class="civic-card" style="padding: 0.85rem; cursor: pointer;" onclick="alert('Task: Prepare electronic evidence Section 65B BSA certificate.');">
+                <span class="badge badge-primary" style="margin-bottom: 0.35rem;">High Priority</span>
+                <strong style="display: block; font-size: 0.875rem;">Sec 65B Electronic Certificate</strong>
+                <small class="text-muted" style="display: block; margin-top: 0.25rem;">Matter: ARB/2026/108</small>
+                <div style="display: flex; justify-content: space-between; margin-top: 0.5rem; font-size: 0.75rem; color: #64748b;">
+                    <span><i class="fa-solid fa-user"></i> Adv. Sharma</span>
+                    <span><i class="fa-solid fa-calendar"></i> Next week</span>
+                </div>
             </div>
         </div>
+    </div>
 
-        <div class="table-responsive">
-            <table class="data-table">
-                <thead>
-                    <tr>
-                        <th>Identifier / Record</th>
-                        <th>Subject Matter</th>
-                        <th>Assigned Authority</th>
-                        <th>Current State</th>
-                        <th>Timeline / Due Date</th>
-                        <th>Action</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td><strong>REF-2026-001</strong></td>
-                        <td>Corporate Commercial Injunction & Specific Performance</td>
-                        <td>Senior Counsel / Presiding Bench</td>
-                        <td><span class="badge badge-success">Active & Compliant</span></td>
-                        <td>Next Hearing: Oct 12, 2026</td>
-                        <td><button class="btn btn-sm btn-outline">Inspect</button></td>
-                    </tr>
-                    <tr>
-                        <td><strong>REF-2026-002</strong></td>
-                        <td>Bail Application under Section 439 CrPC</td>
-                        <td>Defense Counsel / Sessions Judge</td>
-                        <td><span class="badge badge-warning">Hearing Scheduled</span></td>
-                        <td>Listed: Tomorrow 10:30 AM</td>
-                        <td><button class="btn btn-sm btn-outline">Inspect</button></td>
-                    </tr>
-                </tbody>
-            </table>
+    <!-- Column 3: Under Senior Review -->
+    <div style="background-color: #f1f5f9; border-radius: 8px; padding: 1rem; border-top: 4px solid #f59e0b;">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+            <h4 style="margin: 0; font-size: 0.95rem; font-weight: 700; color: #1e293b;">REVIEW (2)</h4>
+            <span class="badge badge-warning">Settling</span>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 0.75rem;">
+            <div class="civic-card" style="padding: 0.85rem; cursor: pointer;" onclick="alert('Task: Senior Counsel settling Rejoinder Affidavit.');">
+                <span class="badge badge-primary" style="margin-bottom: 0.35rem;">Lead Review</span>
+                <strong style="display: block; font-size: 0.875rem;">Settle Rejoinder Affidavit</strong>
+                <small class="text-muted" style="display: block; margin-top: 0.25rem;">Matter: High Court Injunction</small>
+                <div style="display: flex; justify-content: space-between; margin-top: 0.5rem; font-size: 0.75rem; color: #64748b;">
+                    <span><i class="fa-solid fa-user-tie"></i> Senior Partner</span>
+                    <span><i class="fa-solid fa-calendar"></i> Today 5 PM</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Column 4: Completed & Filed -->
+    <div style="background-color: #f1f5f9; border-radius: 8px; padding: 1rem; border-top: 4px solid #10b981;">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+            <h4 style="margin: 0; font-size: 0.95rem; font-weight: 700; color: #1e293b;">FILED / DONE (4)</h4>
+            <span class="badge badge-success">Completed</span>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 0.75rem;">
+            <div class="civic-card" style="padding: 0.85rem; opacity: 0.9;">
+                <span class="badge badge-success" style="margin-bottom: 0.35rem;">e-Filing Receipt #8891</span>
+                <strong style="display: block; font-size: 0.875rem;">Section 9 Petition e-Filing</strong>
+                <small class="text-muted" style="display: block; margin-top: 0.25rem;">Matter: ARB/2026/108</small>
+                <div style="display: flex; justify-content: space-between; margin-top: 0.5rem; font-size: 0.75rem; color: #16a34a;">
+                    <span><i class="fa-solid fa-circle-check"></i> Cleared Registry</span>
+                    <span>Sept 02, 2026</span>
+                </div>
+            </div>
         </div>
     </div>
 </div>

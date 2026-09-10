@@ -2,20 +2,26 @@
 {% block title %}Litigation Tasks & Workflow Stages{% endblock %}
 {% block page_title %}Litigation Tasks & Workflow Stages{% endblock %}
 
+{% block header_actions %}
+<a href="{% url 'tasks:kanban' %}" class="btn btn-outline btn-sm"><i class="fa-solid fa-table-columns"></i> Kanban Board</a>
+<a href="{% url 'deadlines:deadline_list' %}" class="btn btn-outline btn-sm"><i class="fa-solid fa-clock"></i> Deadlines</a>
+<button class="btn btn-primary btn-sm" onclick="alert('Create Task modal: enter task title, select case matter, assign legal staff, and set procedural deadline.');">
+    <i class="fa-solid fa-plus"></i> Create Task
+</button>
+{% endblock %}
+
 {% block content %}
 <div class="civic-card">
     <div class="card-header">
-        <h3><i class="fa-solid fa-layer-group"></i> Litigation Tasks & Workflow Stages</h3>
-        <div class="header-tools">
-            <span class="badge badge-primary">Enterprise Ready</span>
-        </div>
+        <h3><i class="fa-solid fa-list-check"></i> Procedural Tasks & Checklist Register</h3>
+        <span class="badge badge-primary">Task Tracker</span>
     </div>
     <div class="card-body">
-        <p class="text-muted">Enterprise module view for Litigation Tasks & Workflow Stages. Full operational workflows, search filters, and record management enabled.</p>
+        <p class="text-muted">Docket of legal drafting tasks, evidence gathering actions, court filings, and client communication assignments.</p>
         
         <div class="filter-bar">
             <div class="filter-inputs">
-                <input type="text" placeholder="Filter by reference, keyword or date..." class="form-control">
+                <input type="text" placeholder="Filter by task title, matter, assignee, or priority..." class="form-control">
             </div>
             <div class="filter-actions">
                 <button class="btn btn-primary"><i class="fa-solid fa-filter"></i> Apply Filter</button>
@@ -27,31 +33,63 @@
             <table class="data-table">
                 <thead>
                     <tr>
-                        <th>Identifier / Record</th>
-                        <th>Subject Matter</th>
-                        <th>Assigned Authority</th>
-                        <th>Current State</th>
-                        <th>Timeline / Due Date</th>
+                        <th>Task Description</th>
+                        <th>Associated Matter</th>
+                        <th>Assigned Advocate / Staff</th>
+                        <th>Priority</th>
+                        <th>Due Date</th>
+                        <th>Status</th>
                         <th>Action</th>
                     </tr>
                 </thead>
                 <tbody>
+                    {% for t in tasks %}
                     <tr>
-                        <td><strong>REF-2026-001</strong></td>
-                        <td>Corporate Commercial Injunction & Specific Performance</td>
-                        <td>Senior Counsel / Presiding Bench</td>
-                        <td><span class="badge badge-success">Active & Compliant</span></td>
-                        <td>Next Hearing: Oct 12, 2026</td>
+                        <td><strong>{{ t.title }}</strong><br><small class="text-muted">{{ t.description|truncatechars:45 }}</small></td>
+                        <td>{{ t.case.case_number|default:'Global Reference' }}</td>
+                        <td>{{ t.assignee.get_full_name|default:'Unassigned' }}</td>
+                        <td>
+                            <span class="badge {% if t.priority == 'HIGH' or t.priority == 'URGENT' %}badge-danger{% elif t.priority == 'MEDIUM' %}badge-warning{% else %}badge-info{% endif %}">
+                                {{ t.priority }}
+                            </span>
+                        </td>
+                        <td><strong>{{ t.due_date|date:"M d, Y" }}</strong></td>
+                        <td>
+                            <span class="badge {% if t.status == 'COMPLETED' %}badge-success{% elif t.status == 'IN_PROGRESS' %}badge-info{% else %}badge-secondary{% endif %}">
+                                {{ t.status }}
+                            </span>
+                        </td>
+                        <td><button class="btn btn-sm btn-outline">Inspect</button></td>
+                    </tr>
+                    {% empty %}
+                    <tr>
+                        <td><strong>Draft Written Statement (O.VIII R.1 CPC)</strong></td>
+                        <td>CS/2026/89 &bull; TechCorp v. Nexus</td>
+                        <td>Advocate Vikram Kapoor</td>
+                        <td><span class="badge badge-danger">URGENT</span></td>
+                        <td>Sept 14, 2026</td>
+                        <td><span class="badge badge-info">IN_PROGRESS</span></td>
                         <td><button class="btn btn-sm btn-outline">Inspect</button></td>
                     </tr>
                     <tr>
-                        <td><strong>REF-2026-002</strong></td>
-                        <td>Bail Application under Section 439 CrPC</td>
-                        <td>Defense Counsel / Sessions Judge</td>
-                        <td><span class="badge badge-warning">Hearing Scheduled</span></td>
-                        <td>Listed: Tomorrow 10:30 AM</td>
+                        <td><strong>Settle Rejoinder Affidavit with Senior Counsel</strong></td>
+                        <td>ARB/2026/108 &bull; Bharat Heavy Infra</td>
+                        <td>Senior Advocate Chambers</td>
+                        <td><span class="badge badge-warning">MEDIUM</span></td>
+                        <td>Sept 16, 2026</td>
+                        <td><span class="badge badge-secondary">PENDING</span></td>
                         <td><button class="btn btn-sm btn-outline">Inspect</button></td>
                     </tr>
+                    <tr>
+                        <td><strong>Compile Section 65B Electronic Records Exhibit</strong></td>
+                        <td>ARB/2026/108 &bull; Bharat Heavy Infra</td>
+                        <td>Advocate Priya Sharma</td>
+                        <td><span class="badge badge-primary">HIGH</span></td>
+                        <td>Sept 20, 2026</td>
+                        <td><span class="badge badge-info">IN_PROGRESS</span></td>
+                        <td><button class="btn btn-sm btn-outline">Inspect</button></td>
+                    </tr>
+                    {% endfor %}
                 </tbody>
             </table>
         </div>

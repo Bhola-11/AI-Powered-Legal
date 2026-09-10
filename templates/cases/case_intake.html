@@ -2,59 +2,92 @@
 {% block title %}New Case Intake & Conflict Clearance Wizard{% endblock %}
 {% block page_title %}New Case Intake & Conflict Clearance Wizard{% endblock %}
 
+{% block header_actions %}
+<a href="{% url 'cases:case_list' %}" class="btn btn-outline btn-sm"><i class="fa-solid fa-arrow-left"></i> Cancel & Return</a>
+{% endblock %}
+
 {% block content %}
-<div class="civic-card">
+<div class="civic-card" style="max-width: 900px; margin: 0 auto;">
     <div class="card-header">
-        <h3><i class="fa-solid fa-layer-group"></i> New Case Intake & Conflict Clearance Wizard</h3>
-        <div class="header-tools">
-            <span class="badge badge-primary">Enterprise Ready</span>
-        </div>
+        <h3><i class="fa-solid fa-file-circle-plus"></i> Matter Intake & Registration Protocol</h3>
+        <span class="badge badge-primary">16-Stage Lifecycle</span>
     </div>
     <div class="card-body">
-        <p class="text-muted">Enterprise module view for New Case Intake & Conflict Clearance Wizard. Full operational workflows, search filters, and record management enabled.</p>
-        
-        <div class="filter-bar">
-            <div class="filter-inputs">
-                <input type="text" placeholder="Filter by reference, keyword or date..." class="form-control">
+        <form action="{% url 'cases:case_list' %}" method="get">
+            <div style="margin-bottom: 1.5rem; background-color: #f8fafc; padding: 1rem; border-radius: 8px; border-left: 4px solid var(--accent-gold);">
+                <h4 style="margin: 0 0 0.5rem 0; font-size: 0.95rem; color: #0f172a;">
+                    <i class="fa-solid fa-shield-halved"></i> Automated Conflict Check Gate
+                </h4>
+                <p style="margin: 0; font-size: 0.85rem; color: #475569;">
+                    Bar Council of India Rule 35 compliance: CivicLaw verifies adverse representation before committing new matters.
+                </p>
             </div>
-            <div class="filter-actions">
-                <button class="btn btn-primary"><i class="fa-solid fa-filter"></i> Apply Filter</button>
-                <button class="btn btn-outline"><i class="fa-solid fa-arrows-rotate"></i> Reset</button>
-            </div>
-        </div>
 
-        <div class="table-responsive">
-            <table class="data-table">
-                <thead>
-                    <tr>
-                        <th>Identifier / Record</th>
-                        <th>Subject Matter</th>
-                        <th>Assigned Authority</th>
-                        <th>Current State</th>
-                        <th>Timeline / Due Date</th>
-                        <th>Action</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td><strong>REF-2026-001</strong></td>
-                        <td>Corporate Commercial Injunction & Specific Performance</td>
-                        <td>Senior Counsel / Presiding Bench</td>
-                        <td><span class="badge badge-success">Active & Compliant</span></td>
-                        <td>Next Hearing: Oct 12, 2026</td>
-                        <td><button class="btn btn-sm btn-outline">Inspect</button></td>
-                    </tr>
-                    <tr>
-                        <td><strong>REF-2026-002</strong></td>
-                        <td>Bail Application under Section 439 CrPC</td>
-                        <td>Defense Counsel / Sessions Judge</td>
-                        <td><span class="badge badge-warning">Hearing Scheduled</span></td>
-                        <td>Listed: Tomorrow 10:30 AM</td>
-                        <td><button class="btn btn-sm btn-outline">Inspect</button></td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; margin-bottom: 1.25rem;">
+                <div>
+                    <label style="display: block; font-size: 0.8rem; font-weight: 700; text-transform: uppercase; color: #475569; margin-bottom: 0.35rem;">Matter Title / Cause Title *</label>
+                    <input type="text" class="form-control" placeholder="e.g. Acme Corp v. Global Transit Ltd" required value="Premier Infrastructure Ltd v. Union Power Grid">
+                </div>
+                <div>
+                    <label style="display: block; font-size: 0.8rem; font-weight: 700; text-transform: uppercase; color: #475569; margin-bottom: 0.35rem;">Litigation Category / Type *</label>
+                    <select class="form-control">
+                        <option>Arbitration & Conciliation Petition (A&C 1996)</option>
+                        <option>Commercial Suit (Commercial Courts Act 2015)</option>
+                        <option>Civil Regular Suit / Injunction (CPC 1908)</option>
+                        <option>Criminal Defense / Bail Application (CrPC / BNSS)</option>
+                        <option>Insolvency & Bankruptcy (IBC 2016)</option>
+                        <option>Constitutional Writ Petition (Art. 226/32)</option>
+                    </select>
+                </div>
+            </div>
+
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; margin-bottom: 1.25rem;">
+                <div>
+                    <label style="display: block; font-size: 0.8rem; font-weight: 700; text-transform: uppercase; color: #475569; margin-bottom: 0.35rem;">Represented Client *</label>
+                    <input type="text" class="form-control" placeholder="Select or enter client name" value="Bharat Heavy Infrastructure Ltd">
+                </div>
+                <div>
+                    <label style="display: block; font-size: 0.8rem; font-weight: 700; text-transform: uppercase; color: #475569; margin-bottom: 0.35rem;">Opposite / Adverse Party *</label>
+                    <input type="text" id="conflict-party-name" class="form-control" placeholder="Name of defendant/respondent" value="Union Power Grid Consortium">
+                </div>
+            </div>
+
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; margin-bottom: 1.25rem;">
+                <div>
+                    <label style="display: block; font-size: 0.8rem; font-weight: 700; text-transform: uppercase; color: #475569; margin-bottom: 0.35rem;">Judicial Forum / Court *</label>
+                    <select class="form-control">
+                        <option>High Court of Delhi - New Delhi</option>
+                        <option>Supreme Court of India</option>
+                        <option>Bombay High Court</option>
+                        <option>National Company Law Appellate Tribunal (NCLAT)</option>
+                        <option>District Court Saket - New Delhi</option>
+                    </select>
+                </div>
+                <div>
+                    <label style="display: block; font-size: 0.8rem; font-weight: 700; text-transform: uppercase; color: #475569; margin-bottom: 0.35rem;">CNR Number (Optional / Pending)</label>
+                    <input type="text" class="form-control" placeholder="16-character National Judicial CNR" value="DLHC01-009876-2026">
+                </div>
+            </div>
+
+            <div style="margin-bottom: 1.25rem;">
+                <label style="display: block; font-size: 0.8rem; font-weight: 700; text-transform: uppercase; color: #475569; margin-bottom: 0.35rem;">Case Facts & Relief Sought</label>
+                <textarea class="form-control" rows="4" placeholder="Brief outline of case background, statutory provisions invoked, and urgent reliefs...">Emergency petition seeking injunction against encashment of conditional performance bank guarantees valued at INR 24.5 Crores pending statutory arbitration adjudication under Section 9 of the Arbitration and Conciliation Act.</textarea>
+            </div>
+
+            <div id="conflict-results-box"></div>
+
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 1.5rem; padding-top: 1rem; border-top: 1px solid #e2e8f0;">
+                <button type="button" id="run-conflict-check-btn" class="btn btn-outline">
+                    <i class="fa-solid fa-shield-virus"></i> Verify Conflict of Interest
+                </button>
+                <div style="display: flex; gap: 0.75rem;">
+                    <a href="{% url 'cases:case_list' %}" class="btn btn-outline">Discard</a>
+                    <a href="{% url 'cases:case_list' %}" class="btn btn-primary">
+                        <i class="fa-solid fa-check"></i> Submit & Register Case
+                    </a>
+                </div>
+            </div>
+        </form>
     </div>
 </div>
 {% endblock %}

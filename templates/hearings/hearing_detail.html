@@ -1,59 +1,79 @@
 {% extends 'base.html' %}
-{% block title %}Hearing Proceedings & Order Recording{% endblock %}
-{% block page_title %}Hearing Proceedings & Order Recording{% endblock %}
+{% block title %}Hearing Record: {{ hearing.case.case_number|default:'Hearing Details' }}{% endblock %}
+{% block page_title %}Hearing Record: {{ hearing.case.case_number|default:'ARB/2026/108' }}{% endblock %}
+
+{% block header_actions %}
+<a href="{% url 'hearings:hearing_list' %}" class="btn btn-outline btn-sm"><i class="fa-solid fa-arrow-left"></i> Back to Hearings</a>
+<a href="{% url 'cases:case_detail' hearing.case.id %}" class="btn btn-outline btn-sm"><i class="fa-solid fa-briefcase"></i> View Case Dossier</a>
+<a href="{% url 'orders_judgments:order_list' %}" class="btn btn-primary btn-sm"><i class="fa-solid fa-stamp"></i> Record Court Order</a>
+{% endblock %}
 
 {% block content %}
-<div class="civic-card">
-    <div class="card-header">
-        <h3><i class="fa-solid fa-layer-group"></i> Hearing Proceedings & Order Recording</h3>
-        <div class="header-tools">
-            <span class="badge badge-primary">Enterprise Ready</span>
+<div class="dashboard-banner" style="margin-bottom: 1.5rem;">
+    <div class="banner-text">
+        <h3>{{ hearing.case.title|default:'Corporate Commercial Arbitration Hearing' }}</h3>
+        <p>
+            <strong>Date:</strong> {{ hearing.hearing_date|date:"F d, Y"|default:'October 15, 2026' }} &bull;
+            <strong>Time:</strong> {{ hearing.hearing_date|time:"H:i A"|default:'10:30 AM' }} &bull;
+            <strong>Forum:</strong> {{ hearing.case.court_complex.name|default:'High Court of Delhi' }}
+        </p>
+    </div>
+    <div class="banner-badge">
+        <span class="badge badge-warning" style="font-size: 0.85rem; padding: 0.5rem 0.85rem;">
+            {{ hearing.get_status_display|default:'SCHEDULED' }}
+        </span>
+    </div>
+</div>
+
+<div class="dashboard-grid-two-col">
+    <div class="civic-card">
+        <div class="card-header">
+            <h3><i class="fa-solid fa-gavel"></i> Judicial Bench & Setting</h3>
+        </div>
+        <div class="card-body">
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                <div>
+                    <span style="font-size: 0.75rem; color: #64748b; text-transform: uppercase; font-weight: 700;">Presiding Judge</span>
+                    <div style="font-weight: 600;">{{ hearing.judge.name|default:'Honble Justice Sanjay Kishan' }}</div>
+                </div>
+                <div>
+                    <span style="font-size: 0.75rem; color: #64748b; text-transform: uppercase; font-weight: 700;">Assigned Courtroom</span>
+                    <div style="font-weight: 600;">{{ hearing.courtroom.room_number|default:'Courtroom 04 (Main Wing)' }}</div>
+                </div>
+                <div>
+                    <span style="font-size: 0.75rem; color: #64748b; text-transform: uppercase; font-weight: 700;">Hearing Category</span>
+                    <div><span class="badge badge-info">{{ hearing.hearing_type|default:'INTERIM_INJUNCTION' }}</span></div>
+                </div>
+                <div>
+                    <span style="font-size: 0.75rem; color: #64748b; text-transform: uppercase; font-weight: 700;">Cause List Serial</span>
+                    <div style="font-weight: 600;">Item No. 14 (Supplementary List)</div>
+                </div>
+            </div>
+
+            <div style="margin-top: 1.25rem; padding-top: 1rem; border-top: 1px solid #e2e8f0;">
+                <span style="font-size: 0.75rem; color: #64748b; text-transform: uppercase; font-weight: 700;">Purpose of Listing</span>
+                <p style="margin-top: 0.25rem; font-size: 0.9rem;">
+                    {{ hearing.purpose|default:'Hearing on Application under Section 9 of the Arbitration and Conciliation Act for interim preservation of project assets.' }}
+                </p>
+            </div>
         </div>
     </div>
-    <div class="card-body">
-        <p class="text-muted">Enterprise module view for Hearing Proceedings & Order Recording. Full operational workflows, search filters, and record management enabled.</p>
-        
-        <div class="filter-bar">
-            <div class="filter-inputs">
-                <input type="text" placeholder="Filter by reference, keyword or date..." class="form-control">
-            </div>
-            <div class="filter-actions">
-                <button class="btn btn-primary"><i class="fa-solid fa-filter"></i> Apply Filter</button>
-                <button class="btn btn-outline"><i class="fa-solid fa-arrows-rotate"></i> Reset</button>
-            </div>
-        </div>
 
-        <div class="table-responsive">
-            <table class="data-table">
-                <thead>
-                    <tr>
-                        <th>Identifier / Record</th>
-                        <th>Subject Matter</th>
-                        <th>Assigned Authority</th>
-                        <th>Current State</th>
-                        <th>Timeline / Due Date</th>
-                        <th>Action</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td><strong>REF-2026-001</strong></td>
-                        <td>Corporate Commercial Injunction & Specific Performance</td>
-                        <td>Senior Counsel / Presiding Bench</td>
-                        <td><span class="badge badge-success">Active & Compliant</span></td>
-                        <td>Next Hearing: Oct 12, 2026</td>
-                        <td><button class="btn btn-sm btn-outline">Inspect</button></td>
-                    </tr>
-                    <tr>
-                        <td><strong>REF-2026-002</strong></td>
-                        <td>Bail Application under Section 439 CrPC</td>
-                        <td>Defense Counsel / Sessions Judge</td>
-                        <td><span class="badge badge-warning">Hearing Scheduled</span></td>
-                        <td>Listed: Tomorrow 10:30 AM</td>
-                        <td><button class="btn btn-sm btn-outline">Inspect</button></td>
-                    </tr>
-                </tbody>
-            </table>
+    <div class="civic-card">
+        <div class="card-header">
+            <h3><i class="fa-solid fa-pen-nib"></i> Hearing Minutes & Bench Directions</h3>
+        </div>
+        <div class="card-body">
+            <div style="background-color: #f8fafc; border-radius: 8px; padding: 1rem; border: 1px solid #e2e8f0; margin-bottom: 1rem;">
+                <span style="font-size: 0.75rem; color: #64748b; text-transform: uppercase; font-weight: 700;">Recorded Summary</span>
+                <p style="margin: 0.5rem 0 0 0; font-size: 0.875rem; line-height: 1.5;">
+                    {{ hearing.proceedings_summary|default:'Parties heard at length on the balance of convenience and irreparable injury arguments. Senior Counsel for Petitioner completed oral submissions. Matter adjourned for reply by Respondents.' }}
+                </p>
+            </div>
+            <div style="display: flex; gap: 0.75rem;">
+                <a href="{% url 'documents:vault' %}" class="btn btn-outline btn-sm"><i class="fa-solid fa-file-pdf"></i> Upload Daily Order</a>
+                <a href="{% url 'tasks:task_list' %}" class="btn btn-primary btn-sm"><i class="fa-solid fa-list-check"></i> Assign Follow-up Task</a>
+            </div>
         </div>
     </div>
 </div>

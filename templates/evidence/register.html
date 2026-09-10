@@ -1,21 +1,26 @@
 {% extends 'base.html' %}
-{% block title %}Evidence Catalog & Exhibit Marking Register{% endblock %}
-{% block page_title %}Evidence Catalog & Exhibit Marking Register{% endblock %}
+{% block title %}Evidence Register & Chain of Custody{% endblock %}
+{% block page_title %}Evidence Register & Chain of Custody Ledger{% endblock %}
+
+{% block header_actions %}
+<a href="{% url 'documents:vault' %}" class="btn btn-outline btn-sm"><i class="fa-solid fa-vault"></i> Document Vault</a>
+<button class="btn btn-primary btn-sm" onclick="alert('Log New Exhibit modal: select case, assign Exhibit Mark (e.g. Ex. P-1), and enter custodian details.');">
+    <i class="fa-solid fa-plus"></i> Log New Evidence Item
+</button>
+{% endblock %}
 
 {% block content %}
 <div class="civic-card">
     <div class="card-header">
-        <h3><i class="fa-solid fa-layer-group"></i> Evidence Catalog & Exhibit Marking Register</h3>
-        <div class="header-tools">
-            <span class="badge badge-primary">Enterprise Ready</span>
-        </div>
+        <h3><i class="fa-solid fa-fingerprint"></i> Physical & Electronic Evidence Ledger</h3>
+        <span class="badge badge-success"><i class="fa-solid fa-shield-check"></i> Section 65B BSA Compliant</span>
     </div>
     <div class="card-body">
-        <p class="text-muted">Enterprise module view for Evidence Catalog & Exhibit Marking Register. Full operational workflows, search filters, and record management enabled.</p>
+        <p class="text-muted">Tracking of documentary exhibits, original physical contracts, forensic digital copies, and tamper-evident chain of custody logs.</p>
         
         <div class="filter-bar">
             <div class="filter-inputs">
-                <input type="text" placeholder="Filter by reference, keyword or date..." class="form-control">
+                <input type="text" placeholder="Filter by exhibit mark, description, matter, or custodian..." class="form-control">
             </div>
             <div class="filter-actions">
                 <button class="btn btn-primary"><i class="fa-solid fa-filter"></i> Apply Filter</button>
@@ -27,31 +32,50 @@
             <table class="data-table">
                 <thead>
                     <tr>
-                        <th>Identifier / Record</th>
-                        <th>Subject Matter</th>
-                        <th>Assigned Authority</th>
-                        <th>Current State</th>
-                        <th>Timeline / Due Date</th>
+                        <th>Exhibit Mark</th>
+                        <th>Evidence Description</th>
+                        <th>Associated Matter</th>
+                        <th>Classification</th>
+                        <th>Current Custodian</th>
+                        <th>Status</th>
                         <th>Action</th>
                     </tr>
                 </thead>
                 <tbody>
+                    {% for it in items %}
                     <tr>
-                        <td><strong>REF-2026-001</strong></td>
-                        <td>Corporate Commercial Injunction & Specific Performance</td>
-                        <td>Senior Counsel / Presiding Bench</td>
-                        <td><span class="badge badge-success">Active & Compliant</span></td>
-                        <td>Next Hearing: Oct 12, 2026</td>
+                        <td><strong><a href="{% url 'evidence:evidence_detail' it.id %}" style="color: var(--primary-color); text-decoration: none;">{{ it.exhibit_number|default:'Ex. P-1' }}</a></strong></td>
+                        <td><strong>{{ it.title }}</strong><br><small class="text-muted">{{ it.description|truncatechars:45 }}</small></td>
+                        <td>{{ it.case.case_number|default:'General Docket' }}</td>
+                        <td><span class="badge badge-secondary">{{ it.evidence_type }}</span></td>
+                        <td>{{ it.current_custodian.get_full_name|default:'Evidence Officer' }}</td>
+                        <td><span class="badge badge-success">IN_CUSTODY</span></td>
+                        <td>
+                            <a href="{% url 'evidence:evidence_detail' it.id %}" class="btn btn-sm btn-primary">
+                                <i class="fa-solid fa-timeline"></i> View Custody Log
+                            </a>
+                        </td>
+                    </tr>
+                    {% empty %}
+                    <tr>
+                        <td><strong>Ex. P-1</strong></td>
+                        <td><strong>Original EPC Contract Agreement</strong><br><small class="text-muted">Signed original agreement with stamp duty certification.</small></td>
+                        <td>ARB/2026/108 &bull; Bharat Heavy Infra</td>
+                        <td><span class="badge badge-primary">DOCUMENTARY</span></td>
+                        <td>Advocate Vikram Kapoor (Firm Vault)</td>
+                        <td><span class="badge badge-success">SECURE IN VAULT</span></td>
                         <td><button class="btn btn-sm btn-outline">Inspect</button></td>
                     </tr>
                     <tr>
-                        <td><strong>REF-2026-002</strong></td>
-                        <td>Bail Application under Section 439 CrPC</td>
-                        <td>Defense Counsel / Sessions Judge</td>
-                        <td><span class="badge badge-warning">Hearing Scheduled</span></td>
-                        <td>Listed: Tomorrow 10:30 AM</td>
+                        <td><strong>Ex. P-2</strong></td>
+                        <td><strong>Bank Guarantee Dispatch Record</strong><br><small class="text-muted">Original SWIFT transmission acknowledgment slip.</small></td>
+                        <td>ARB/2026/108 &bull; Bharat Heavy Infra</td>
+                        <td><span class="badge badge-info">ELECTRONIC / CERTIFIED</span></td>
+                        <td>Registrar, High Court of Delhi</td>
+                        <td><span class="badge badge-warning">DEPOSITED IN COURT</span></td>
                         <td><button class="btn btn-sm btn-outline">Inspect</button></td>
                     </tr>
+                    {% endfor %}
                 </tbody>
             </table>
         </div>

@@ -1,21 +1,26 @@
 {% extends 'base.html' %}
-{% block title %}Legal Invoices, Retainers & Accounts Ledger{% endblock %}
-{% block page_title %}Legal Invoices, Retainers & Accounts Ledger{% endblock %}
+{% block title %}Billing Ledger & Tax Invoices{% endblock %}
+{% block page_title %}Billing Ledger & Tax Invoices{% endblock %}
+
+{% block header_actions %}
+<a href="{% url 'billing:time_entries' %}" class="btn btn-outline btn-sm"><i class="fa-solid fa-stopwatch"></i> Billable Hours</a>
+<button class="btn btn-primary btn-sm" onclick="alert('Generate Invoice modal: select client matter, billable items, and GST calculation.');">
+    <i class="fa-solid fa-file-invoice-dollar"></i> Generate Invoice
+</button>
+{% endblock %}
 
 {% block content %}
 <div class="civic-card">
     <div class="card-header">
-        <h3><i class="fa-solid fa-layer-group"></i> Legal Invoices, Retainers & Accounts Ledger</h3>
-        <div class="header-tools">
-            <span class="badge badge-primary">Enterprise Ready</span>
-        </div>
+        <h3><i class="fa-solid fa-file-invoice"></i> Law Practice Billing & Accounts Ledger</h3>
+        <span class="badge badge-success"><i class="fa-solid fa-coins"></i> Financial Accounting</span>
     </div>
     <div class="card-body">
-        <p class="text-muted">Enterprise module view for Legal Invoices, Retainers & Accounts Ledger. Full operational workflows, search filters, and record management enabled.</p>
+        <p class="text-muted">Master ledger of retainer fees, court appearances, drafting expenses, and client trust disbursements.</p>
         
         <div class="filter-bar">
             <div class="filter-inputs">
-                <input type="text" placeholder="Filter by reference, keyword or date..." class="form-control">
+                <input type="text" placeholder="Filter by invoice number, matter, client, or payment status..." class="form-control">
             </div>
             <div class="filter-actions">
                 <button class="btn btn-primary"><i class="fa-solid fa-filter"></i> Apply Filter</button>
@@ -27,31 +32,54 @@
             <table class="data-table">
                 <thead>
                     <tr>
-                        <th>Identifier / Record</th>
-                        <th>Subject Matter</th>
-                        <th>Assigned Authority</th>
-                        <th>Current State</th>
-                        <th>Timeline / Due Date</th>
+                        <th>Invoice Number</th>
+                        <th>Client / Corporate Account</th>
+                        <th>Associated Matter</th>
+                        <th>Issue Date</th>
+                        <th>Total Amount</th>
+                        <th>Payment Status</th>
                         <th>Action</th>
                     </tr>
                 </thead>
                 <tbody>
+                    {% for inv in invoices %}
                     <tr>
-                        <td><strong>REF-2026-001</strong></td>
-                        <td>Corporate Commercial Injunction & Specific Performance</td>
-                        <td>Senior Counsel / Presiding Bench</td>
-                        <td><span class="badge badge-success">Active & Compliant</span></td>
-                        <td>Next Hearing: Oct 12, 2026</td>
+                        <td><strong><a href="{% url 'billing:invoice_detail' inv.id %}" style="color: var(--primary-color); text-decoration: none;">{{ inv.invoice_number }}</a></strong></td>
+                        <td>{{ inv.client.display_name|default:'Corporate Client' }}</td>
+                        <td>{{ inv.case.case_number|default:'General Retainer' }}</td>
+                        <td>{{ inv.issue_date|date:"M d, Y" }}</td>
+                        <td><strong>₹{{ inv.total_amount|floatformat:2 }}</strong></td>
+                        <td>
+                            <span class="badge {% if inv.status == 'PAID' %}badge-success{% elif inv.status == 'SENT' %}badge-warning{% else %}badge-info{% endif %}">
+                                {{ inv.get_status_display|default:inv.status }}
+                            </span>
+                        </td>
+                        <td>
+                            <a href="{% url 'billing:invoice_detail' inv.id %}" class="btn btn-sm btn-primary">
+                                <i class="fa-solid fa-file-invoice"></i> View Invoice
+                            </a>
+                        </td>
+                    </tr>
+                    {% empty %}
+                    <tr>
+                        <td><strong>INV-2026-0042</strong></td>
+                        <td>Bharat Heavy Infrastructure Ltd</td>
+                        <td>ARB/2026/108 &bull; Delhi High Court</td>
+                        <td>Sept 01, 2026</td>
+                        <td><strong>₹2,45,000.00</strong></td>
+                        <td><span class="badge badge-success">PAID</span></td>
                         <td><button class="btn btn-sm btn-outline">Inspect</button></td>
                     </tr>
                     <tr>
-                        <td><strong>REF-2026-002</strong></td>
-                        <td>Bail Application under Section 439 CrPC</td>
-                        <td>Defense Counsel / Sessions Judge</td>
-                        <td><span class="badge badge-warning">Hearing Scheduled</span></td>
-                        <td>Listed: Tomorrow 10:30 AM</td>
+                        <td><strong>INV-2026-0043</strong></td>
+                        <td>TechCorp Solutions India Ltd</td>
+                        <td>CS/2026/89 &bull; Commercial Division</td>
+                        <td>Sept 08, 2026</td>
+                        <td><strong>₹1,80,000.00</strong></td>
+                        <td><span class="badge badge-warning">PENDING</span></td>
                         <td><button class="btn btn-sm btn-outline">Inspect</button></td>
                     </tr>
+                    {% endfor %}
                 </tbody>
             </table>
         </div>

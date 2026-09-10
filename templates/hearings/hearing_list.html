@@ -1,21 +1,25 @@
 {% extends 'base.html' %}
-{% block title %}Hearing Schedule & Cause List Roster{% endblock %}
-{% block page_title %}Hearing Schedule & Cause List Roster{% endblock %}
+{% block title %}Hearings & Judicial Calendar{% endblock %}
+{% block page_title %}Hearings & Judicial Calendar{% endblock %}
+
+{% block header_actions %}
+<a href="{% url 'hearings:daily_board' %}" class="btn btn-outline btn-sm"><i class="fa-solid fa-calendar-day"></i> Daily Board</a>
+<a href="{% url 'hearings:calendar' %}" class="btn btn-outline btn-sm"><i class="fa-solid fa-calendar-days"></i> Monthly Calendar</a>
+<a href="{% url 'cases:case_list' %}" class="btn btn-primary btn-sm"><i class="fa-solid fa-plus"></i> List New Hearing</a>
+{% endblock %}
 
 {% block content %}
 <div class="civic-card">
     <div class="card-header">
-        <h3><i class="fa-solid fa-layer-group"></i> Hearing Schedule & Cause List Roster</h3>
-        <div class="header-tools">
-            <span class="badge badge-primary">Enterprise Ready</span>
-        </div>
+        <h3><i class="fa-solid fa-gavel"></i> Court Hearings & Cause List Docket</h3>
+        <span class="badge badge-primary">Synchronized with CIS</span>
     </div>
     <div class="card-body">
-        <p class="text-muted">Enterprise module view for Hearing Schedule & Cause List Roster. Full operational workflows, search filters, and record management enabled.</p>
+        <p class="text-muted">Master schedule of scheduled court appearances, motion arguments, cross-examinations, and bench order hearings.</p>
         
         <div class="filter-bar">
             <div class="filter-inputs">
-                <input type="text" placeholder="Filter by reference, keyword or date..." class="form-control">
+                <input type="text" placeholder="Filter by case, court, courtroom, or judge..." class="form-control">
             </div>
             <div class="filter-actions">
                 <button class="btn btn-primary"><i class="fa-solid fa-filter"></i> Apply Filter</button>
@@ -27,31 +31,57 @@
             <table class="data-table">
                 <thead>
                     <tr>
-                        <th>Identifier / Record</th>
-                        <th>Subject Matter</th>
-                        <th>Assigned Authority</th>
-                        <th>Current State</th>
-                        <th>Timeline / Due Date</th>
+                        <th>Date & Time</th>
+                        <th>Case Number & Title</th>
+                        <th>Court Complex</th>
+                        <th>Courtroom / Bench</th>
+                        <th>Hearing Type</th>
+                        <th>Status</th>
                         <th>Action</th>
                     </tr>
                 </thead>
                 <tbody>
+                    {% for h in hearings %}
                     <tr>
-                        <td><strong>REF-2026-001</strong></td>
-                        <td>Corporate Commercial Injunction & Specific Performance</td>
-                        <td>Senior Counsel / Presiding Bench</td>
-                        <td><span class="badge badge-success">Active & Compliant</span></td>
-                        <td>Next Hearing: Oct 12, 2026</td>
+                        <td><strong>{{ h.hearing_date|date:"M d, Y" }}</strong><br><small class="text-muted">{{ h.hearing_date|time:"H:i A" }}</small></td>
+                        <td>
+                            <strong><a href="{% url 'cases:case_detail' h.case.id %}" style="color: var(--primary-color); text-decoration: none;">{{ h.case.case_number }}</a></strong><br>
+                            <small class="text-muted">{{ h.case.title|truncatechars:40 }}</small>
+                        </td>
+                        <td>{{ h.case.court_complex.name|default:'High Court of Delhi' }}</td>
+                        <td>{{ h.courtroom.room_number|default:'Courtroom 04' }} &bull; {{ h.judge.name|default:'Presiding Bench' }}</td>
+                        <td><span class="badge badge-info">{{ h.hearing_type }}</span></td>
+                        <td>
+                            <span class="badge {% if h.status == 'COMPLETED' %}badge-success{% elif h.status == 'SCHEDULED' %}badge-warning{% else %}badge-secondary{% endif %}">
+                                {{ h.get_status_display|default:h.status }}
+                            </span>
+                        </td>
+                        <td>
+                            <a href="{% url 'hearings:hearing_detail' h.id %}" class="btn btn-sm btn-primary">
+                                <i class="fa-solid fa-scale-balanced"></i> Hearing Record
+                            </a>
+                        </td>
+                    </tr>
+                    {% empty %}
+                    <tr>
+                        <td><strong>Oct 15, 2026</strong><br><small class="text-muted">10:30 AM</small></td>
+                        <td><strong>ARB/2026/108</strong><br><small class="text-muted">Bharat Heavy Infra v. Union Power</small></td>
+                        <td>High Court of Delhi</td>
+                        <td>Courtroom 04 &bull; Justice Sanjay Kishan</td>
+                        <td><span class="badge badge-info">INTERIM_INJUNCTION</span></td>
+                        <td><span class="badge badge-warning">SCHEDULED</span></td>
                         <td><button class="btn btn-sm btn-outline">Inspect</button></td>
                     </tr>
                     <tr>
-                        <td><strong>REF-2026-002</strong></td>
-                        <td>Bail Application under Section 439 CrPC</td>
-                        <td>Defense Counsel / Sessions Judge</td>
-                        <td><span class="badge badge-warning">Hearing Scheduled</span></td>
-                        <td>Listed: Tomorrow 10:30 AM</td>
+                        <td><strong>Oct 18, 2026</strong><br><small class="text-muted">02:00 PM</small></td>
+                        <td><strong>CS/2025/1402</strong><br><small class="text-muted">Sharma v. Union Bank</small></td>
+                        <td>District Court Saket</td>
+                        <td>Room 204 &bull; Presiding Judge</td>
+                        <td><span class="badge badge-info">FRAMING_OF_ISSUES</span></td>
+                        <td><span class="badge badge-info">LISTED</span></td>
                         <td><button class="btn btn-sm btn-outline">Inspect</button></td>
                     </tr>
+                    {% endfor %}
                 </tbody>
             </table>
         </div>

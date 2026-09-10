@@ -7,15 +7,17 @@
     <div class="card-header">
         <h3><i class="fa-solid fa-layer-group"></i> Active Matters & Litigation Register</h3>
         <div class="header-tools">
-            <span class="badge badge-primary">Enterprise Ready</span>
+            <a href="{% url 'cases:case_intake' %}" class="btn btn-primary btn-sm">
+                <i class="fa-solid fa-plus"></i> New Case Intake
+            </a>
         </div>
     </div>
     <div class="card-body">
-        <p class="text-muted">Enterprise module view for Active Matters & Litigation Register. Full operational workflows, search filters, and record management enabled.</p>
+        <p class="text-muted">Enterprise docket of all active civil, criminal, arbitration, and commercial matters under representation.</p>
         
         <div class="filter-bar">
             <div class="filter-inputs">
-                <input type="text" placeholder="Filter by reference, keyword or date..." class="form-control">
+                <input type="text" placeholder="Filter by case number, title, court, or client..." class="form-control">
             </div>
             <div class="filter-actions">
                 <button class="btn btn-primary"><i class="fa-solid fa-filter"></i> Apply Filter</button>
@@ -27,31 +29,60 @@
             <table class="data-table">
                 <thead>
                     <tr>
-                        <th>Identifier / Record</th>
-                        <th>Subject Matter</th>
-                        <th>Assigned Authority</th>
-                        <th>Current State</th>
-                        <th>Timeline / Due Date</th>
+                        <th>Case Number / CNR</th>
+                        <th>Title & Subject Matter</th>
+                        <th>Client</th>
+                        <th>Court / Complex</th>
+                        <th>Stage & Status</th>
+                        <th>Next Hearing</th>
                         <th>Action</th>
                     </tr>
                 </thead>
                 <tbody>
+                    {% for c in cases %}
                     <tr>
-                        <td><strong>REF-2026-001</strong></td>
+                        <td>
+                            <strong><a href="{% url 'cases:case_detail' c.id %}" style="color: var(--primary-color); text-decoration: none;">{{ c.case_number }}</a></strong>
+                            {% if c.cnr_number %}<br><small class="text-muted">CNR: {{ c.cnr_number }}</small>{% endif %}
+                        </td>
+                        <td>
+                            <strong>{{ c.title }}</strong><br>
+                            <small class="text-muted">{{ c.case_type.name|default:'General Litigation' }}</small>
+                        </td>
+                        <td>{{ c.client.display_name|default:'Internal' }}</td>
+                        <td>{{ c.court_complex.name|default:'Unassigned' }}</td>
+                        <td>
+                            <span class="badge {% if c.status == 'OPEN' %}badge-success{% elif c.status == 'PENDING' %}badge-warning{% else %}badge-info{% endif %}">
+                                {{ c.get_stage_display|default:c.stage }}
+                            </span>
+                        </td>
+                        <td>{{ c.next_hearing_date|default:'TBD' }}</td>
+                        <td>
+                            <a href="{% url 'cases:case_detail' c.id %}" class="btn btn-sm btn-primary">
+                                <i class="fa-solid fa-eye"></i> View Dossier
+                            </a>
+                        </td>
+                    </tr>
+                    {% empty %}
+                    <tr>
+                        <td><strong>ARB/2026/108</strong></td>
                         <td>Corporate Commercial Injunction & Specific Performance</td>
-                        <td>Senior Counsel / Presiding Bench</td>
-                        <td><span class="badge badge-success">Active & Compliant</span></td>
-                        <td>Next Hearing: Oct 12, 2026</td>
+                        <td>Bharat Heavy Infrastructure Ltd</td>
+                        <td>High Court of Delhi</td>
+                        <td><span class="badge badge-success">Hearing Scheduled</span></td>
+                        <td>Oct 15, 2026</td>
                         <td><button class="btn btn-sm btn-outline">Inspect</button></td>
                     </tr>
                     <tr>
-                        <td><strong>REF-2026-002</strong></td>
-                        <td>Bail Application under Section 439 CrPC</td>
-                        <td>Defense Counsel / Sessions Judge</td>
-                        <td><span class="badge badge-warning">Hearing Scheduled</span></td>
-                        <td>Listed: Tomorrow 10:30 AM</td>
+                        <td><strong>BAIL/2026/439</strong></td>
+                        <td>Regular Bail Application under Section 439 CrPC</td>
+                        <td>Individual Defense Client</td>
+                        <td>Patiala House Courts</td>
+                        <td><span class="badge badge-warning">Listed</span></td>
+                        <td>Tomorrow 10:30 AM</td>
                         <td><button class="btn btn-sm btn-outline">Inspect</button></td>
                     </tr>
+                    {% endfor %}
                 </tbody>
             </table>
         </div>

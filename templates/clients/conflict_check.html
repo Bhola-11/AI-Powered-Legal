@@ -2,56 +2,90 @@
 {% block title %}Algorithmic Conflict of Interest Clearance{% endblock %}
 {% block page_title %}Algorithmic Conflict of Interest Clearance{% endblock %}
 
+{% block header_actions %}
+<a href="{% url 'clients:client_list' %}" class="btn btn-outline btn-sm"><i class="fa-solid fa-users"></i> Client Roster</a>
+<a href="{% url 'cases:case_intake' %}" class="btn btn-primary btn-sm"><i class="fa-solid fa-plus"></i> New Case Intake</a>
+{% endblock %}
+
 {% block content %}
-<div class="civic-card">
+<div class="civic-card" style="margin-bottom: 1.5rem;">
     <div class="card-header">
-        <h3><i class="fa-solid fa-layer-group"></i> Algorithmic Conflict of Interest Clearance</h3>
-        <div class="header-tools">
-            <span class="badge badge-primary">Enterprise Ready</span>
-        </div>
+        <h3><i class="fa-solid fa-shield-halved"></i> Real-Time Conflict Screening Engine</h3>
+        <span class="badge badge-primary">Bar Council of India Rule 35 Standards</span>
     </div>
     <div class="card-body">
-        <p class="text-muted">Enterprise module view for Algorithmic Conflict of Interest Clearance. Full operational workflows, search filters, and record management enabled.</p>
+        <p class="text-muted">Screen prospective clients, opposing parties, parent corporate entities, and affiliates across active dockets, concluded matters, and closed vaults.</p>
         
-        <div class="filter-bar">
-            <div class="filter-inputs">
-                <input type="text" placeholder="Filter by reference, keyword or date..." class="form-control">
+        <div style="max-width: 650px; margin: 1rem 0;">
+            <label style="display: block; font-size: 0.85rem; font-weight: 700; color: #475569; margin-bottom: 0.35rem;">Party / Individual / Corporate Name to Screen</label>
+            <div style="display: flex; gap: 0.75rem;">
+                <input type="text" id="conflict-party-name" class="form-control" placeholder="Enter entity name (e.g. Union Power Grid Consortium)" value="Union Power Grid Consortium">
+                <button type="button" id="run-conflict-check-btn" class="btn btn-primary" style="white-space: nowrap;">
+                    <i class="fa-solid fa-shield-virus"></i> Run Conflict Check
+                </button>
             </div>
-            <div class="filter-actions">
-                <button class="btn btn-primary"><i class="fa-solid fa-filter"></i> Apply Filter</button>
-                <button class="btn btn-outline"><i class="fa-solid fa-arrows-rotate"></i> Reset</button>
-            </div>
+            <div id="conflict-results-box"></div>
         </div>
+    </div>
+</div>
 
+<div class="civic-card">
+    <div class="card-header">
+        <h3><i class="fa-solid fa-clock-rotate-left"></i> Historical Conflict Clearance Ledger</h3>
+    </div>
+    <div class="card-body">
         <div class="table-responsive">
             <table class="data-table">
                 <thead>
                     <tr>
-                        <th>Identifier / Record</th>
-                        <th>Subject Matter</th>
-                        <th>Assigned Authority</th>
-                        <th>Current State</th>
-                        <th>Timeline / Due Date</th>
+                        <th>Subject Entity Screened</th>
+                        <th>Associated Matter / Prospect</th>
+                        <th>Screening Advocate</th>
+                        <th>Clearance Outcome</th>
+                        <th>Timestamp</th>
                         <th>Action</th>
                     </tr>
                 </thead>
                 <tbody>
+                    {% for r in results %}
                     <tr>
-                        <td><strong>REF-2026-001</strong></td>
-                        <td>Corporate Commercial Injunction & Specific Performance</td>
-                        <td>Senior Counsel / Presiding Bench</td>
-                        <td><span class="badge badge-success">Active & Compliant</span></td>
-                        <td>Next Hearing: Oct 12, 2026</td>
+                        <td><strong>{{ r.entity_name }}</strong></td>
+                        <td>{{ r.case.case_number|default:'Intake Prospect' }}</td>
+                        <td>{{ r.checked_by.get_full_name|default:r.checked_by.username }}</td>
+                        <td>
+                            <span class="badge {% if r.has_conflict %}badge-danger{% else %}badge-success{% endif %}">
+                                {% if r.has_conflict %}CONFLICT IDENTIFIED{% else %}CLEARED{% endif %}
+                            </span>
+                        </td>
+                        <td>{{ r.created_at|date:"M d, Y H:i" }}</td>
+                        <td><button class="btn btn-sm btn-outline">Inspect</button></td>
+                    </tr>
+                    {% empty %}
+                    <tr>
+                        <td><strong>Bharat Heavy Infrastructure Ltd</strong></td>
+                        <td>ARB/2026/108 &bull; Direct Client</td>
+                        <td>Advocate Vikram Kapoor</td>
+                        <td><span class="badge badge-success"><i class="fa-solid fa-check"></i> CLEARED</span></td>
+                        <td>Sept 01, 2026 11:20 AM</td>
                         <td><button class="btn btn-sm btn-outline">Inspect</button></td>
                     </tr>
                     <tr>
-                        <td><strong>REF-2026-002</strong></td>
-                        <td>Bail Application under Section 439 CrPC</td>
-                        <td>Defense Counsel / Sessions Judge</td>
-                        <td><span class="badge badge-warning">Hearing Scheduled</span></td>
-                        <td>Listed: Tomorrow 10:30 AM</td>
+                        <td><strong>Union Power Grid Consortium</strong></td>
+                        <td>ARB/2026/108 &bull; Adverse Respondent</td>
+                        <td>Advocate Vikram Kapoor</td>
+                        <td><span class="badge badge-success"><i class="fa-solid fa-check"></i> ADVERSE RECORDED</span></td>
+                        <td>Sept 01, 2026 11:25 AM</td>
                         <td><button class="btn btn-sm btn-outline">Inspect</button></td>
                     </tr>
+                    <tr>
+                        <td><strong>Nexus Global Corp</strong></td>
+                        <td>CS/2026/89 &bull; Opposite Party</td>
+                        <td>Advocate Priya Sharma</td>
+                        <td><span class="badge badge-success"><i class="fa-solid fa-check"></i> CLEARED</span></td>
+                        <td>Aug 29, 2026 03:15 PM</td>
+                        <td><button class="btn btn-sm btn-outline">Inspect</button></td>
+                    </tr>
+                    {% endfor %}
                 </tbody>
             </table>
         </div>

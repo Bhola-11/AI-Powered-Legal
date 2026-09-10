@@ -1,59 +1,163 @@
 {% extends 'base.html' %}
-{% block title %}Case Comprehensive Dossier{% endblock %}
-{% block page_title %}Case Comprehensive Dossier{% endblock %}
+{% block title %}Case Dossier: {{ case.case_number|default:'Matters Dossier' }}{% endblock %}
+{% block page_title %}Case Dossier: {{ case.case_number|default:'REF-2026-001' }}{% endblock %}
+
+{% block header_actions %}
+<a href="{% url 'cases:case_list' %}" class="btn btn-outline btn-sm"><i class="fa-solid fa-arrow-left"></i> Back to Matters</a>
+<a href="{% url 'hearings:hearing_list' %}" class="btn btn-primary btn-sm"><i class="fa-solid fa-calendar-plus"></i> Schedule Hearing</a>
+<a href="{% url 'documents:vault' %}" class="btn btn-outline btn-sm"><i class="fa-solid fa-upload"></i> Vault Document</a>
+<a href="{% url 'ai_engine:ai_hub' %}" class="btn btn-outline btn-sm"><i class="fa-solid fa-brain"></i> AI Copilot</a>
+{% endblock %}
 
 {% block content %}
-<div class="civic-card">
-    <div class="card-header">
-        <h3><i class="fa-solid fa-layer-group"></i> Case Comprehensive Dossier</h3>
-        <div class="header-tools">
-            <span class="badge badge-primary">Enterprise Ready</span>
-        </div>
+<div class="dashboard-banner" style="margin-bottom: 1.5rem;">
+    <div class="banner-text">
+        <h3>{{ case.title|default:'Corporate Commercial Dispute & Injunction' }}</h3>
+        <p>
+            <strong>CNR:</strong> {{ case.cnr_number|default:'DLHC01-002345-2026' }} &bull; 
+            <strong>Court:</strong> {{ case.court_complex.name|default:'High Court of Delhi' }} &bull;
+            <strong>Client:</strong> {{ case.client.display_name|default:'Bharat Heavy Infrastructure Ltd' }}
+        </p>
     </div>
-    <div class="card-body">
-        <p class="text-muted">Enterprise module view for Case Comprehensive Dossier. Full operational workflows, search filters, and record management enabled.</p>
-        
-        <div class="filter-bar">
-            <div class="filter-inputs">
-                <input type="text" placeholder="Filter by reference, keyword or date..." class="form-control">
+    <div class="banner-badge">
+        <span class="badge badge-success" style="font-size: 0.85rem; padding: 0.5rem 0.85rem;">
+            {{ case.get_stage_display|default:'HEARING_SCHEDULED' }}
+        </span>
+    </div>
+</div>
+
+<div class="dashboard-grid-two-col">
+    <!-- Left Column: Case Profile & Milestones -->
+    <div style="display: flex; flex-direction: column; gap: 1.5rem;">
+        <div class="civic-card">
+            <div class="card-header">
+                <h3><i class="fa-solid fa-circle-info"></i> Matter Particulars</h3>
+                <span class="badge badge-primary">{{ case.case_type.name|default:'Arbitration / Commercial' }}</span>
             </div>
-            <div class="filter-actions">
-                <button class="btn btn-primary"><i class="fa-solid fa-filter"></i> Apply Filter</button>
-                <button class="btn btn-outline"><i class="fa-solid fa-arrows-rotate"></i> Reset</button>
+            <div class="card-body">
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                    <div>
+                        <span style="font-size: 0.75rem; color: #64748b; text-transform: uppercase; font-weight: 700;">Case Category</span>
+                        <div style="font-weight: 600;">{{ case.case_type.category|default:'Commercial' }}</div>
+                    </div>
+                    <div>
+                        <span style="font-size: 0.75rem; color: #64748b; text-transform: uppercase; font-weight: 700;">Filing Date</span>
+                        <div style="font-weight: 600;">{{ case.filing_date|default:'March 15, 2026' }}</div>
+                    </div>
+                    <div>
+                        <span style="font-size: 0.75rem; color: #64748b; text-transform: uppercase; font-weight: 700;">Priority</span>
+                        <div><span class="badge badge-danger">{{ case.priority|default:'HIGH' }}</span></div>
+                    </div>
+                    <div>
+                        <span style="font-size: 0.75rem; color: #64748b; text-transform: uppercase; font-weight: 700;">Next Hearing Date</span>
+                        <div style="font-weight: 600; color: #b45309;">{{ case.next_hearing_date|default:'Oct 15, 2026 - 10:30 AM' }}</div>
+                    </div>
+                </div>
+                <div style="margin-top: 1rem; padding-top: 1rem; border-top: 1px solid #e2e8f0;">
+                    <span style="font-size: 0.75rem; color: #64748b; text-transform: uppercase; font-weight: 700;">Summary of Facts & Relief Sought</span>
+                    <p style="margin-top: 0.25rem; font-size: 0.9rem; line-height: 1.5;">
+                        {{ case.description|default:'Petition under Section 9 of the Arbitration and Conciliation Act, 1996 for interim reliefs restraining invocation of performance bank guarantees and preservation of project infrastructure assets pending constitution of the arbitral tribunal.' }}
+                    </p>
+                </div>
             </div>
         </div>
 
-        <div class="table-responsive">
-            <table class="data-table">
-                <thead>
-                    <tr>
-                        <th>Identifier / Record</th>
-                        <th>Subject Matter</th>
-                        <th>Assigned Authority</th>
-                        <th>Current State</th>
-                        <th>Timeline / Due Date</th>
-                        <th>Action</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td><strong>REF-2026-001</strong></td>
-                        <td>Corporate Commercial Injunction & Specific Performance</td>
-                        <td>Senior Counsel / Presiding Bench</td>
-                        <td><span class="badge badge-success">Active & Compliant</span></td>
-                        <td>Next Hearing: Oct 12, 2026</td>
-                        <td><button class="btn btn-sm btn-outline">Inspect</button></td>
-                    </tr>
-                    <tr>
-                        <td><strong>REF-2026-002</strong></td>
-                        <td>Bail Application under Section 439 CrPC</td>
-                        <td>Defense Counsel / Sessions Judge</td>
-                        <td><span class="badge badge-warning">Hearing Scheduled</span></td>
-                        <td>Listed: Tomorrow 10:30 AM</td>
-                        <td><button class="btn btn-sm btn-outline">Inspect</button></td>
-                    </tr>
-                </tbody>
-            </table>
+        <!-- Assigned Advocates & Adverse Parties -->
+        <div class="civic-card">
+            <div class="card-header">
+                <h3><i class="fa-solid fa-users"></i> Representation & Adverse Parties</h3>
+            </div>
+            <div class="card-body">
+                <h4 style="font-size: 0.9rem; color: #1e293b; margin-bottom: 0.5rem;"><i class="fa-solid fa-user-tie"></i> Legal Representation:</h4>
+                <ul style="list-style: none; padding: 0; margin-bottom: 1.25rem;">
+                    {% for adv in advocates %}
+                    <li style="padding: 0.35rem 0; border-bottom: 1px solid #f1f5f9;">
+                        <strong>{{ adv.advocate.get_full_name|default:adv.advocate.username }}</strong> &bull; <span class="text-muted">{{ adv.role }}</span>
+                    </li>
+                    {% empty %}
+                    <li style="padding: 0.35rem 0;">Advocate Vikram Kapoor (Lead Counsel)</li>
+                    <li style="padding: 0.35rem 0;">Advocate Priya Sharma (Junior Associate)</li>
+                    {% endfor %}
+                </ul>
+
+                <h4 style="font-size: 0.9rem; color: #1e293b; margin-bottom: 0.5rem;"><i class="fa-solid fa-handshake-slash"></i> Opposite Parties & Counsel:</h4>
+                <ul style="list-style: none; padding: 0;">
+                    {% for op in opposite_parties %}
+                    <li style="padding: 0.35rem 0; border-bottom: 1px solid #f1f5f9;">
+                        <strong>{{ op.name }}</strong> ({{ op.party_type }}) - Represented by: {{ op.advocate_name|default:'Senior Counsel' }}
+                    </li>
+                    {% empty %}
+                    <li style="padding: 0.35rem 0;">Apex Global Infrastructure Consortium Pvt Ltd &bull; Counsel: Adv. R. K. Singhania</li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- Right Column: Procedural Timeline & Internal Notes -->
+    <div style="display: flex; flex-direction: column; gap: 1.5rem;">
+        <div class="civic-card">
+            <div class="card-header">
+                <h3><i class="fa-solid fa-timeline"></i> Case Chronology & Proceedings</h3>
+            </div>
+            <div class="card-body">
+                <div class="timeline-quick-feed">
+                    {% for ev in timeline %}
+                    <div class="feed-item">
+                        <div class="feed-icon"><i class="fa-solid fa-gavel"></i></div>
+                        <div class="feed-content">
+                            <strong>{{ ev.title }}</strong>
+                            <p>{{ ev.description }}</p>
+                            <small class="text-muted">{{ ev.event_date }}</small>
+                        </div>
+                    </div>
+                    {% empty %}
+                    <div class="feed-item">
+                        <div class="feed-icon"><i class="fa-solid fa-file-signature"></i></div>
+                        <div class="feed-content">
+                            <strong>Interim Order Entered</strong>
+                            <p>Hon'ble Court directed maintenance of status quo regarding bank guarantees till next listing.</p>
+                            <small class="text-muted">Recorded: Sept 04, 2026</small>
+                        </div>
+                    </div>
+                    <div class="feed-item">
+                        <div class="feed-icon"><i class="fa-solid fa-scale-balanced"></i></div>
+                        <div class="feed-content">
+                            <strong>Service of Notice Completed</strong>
+                            <p>Affidavit of service filed with proof of dasti dispatch and email service.</p>
+                            <small class="text-muted">Recorded: Aug 28, 2026</small>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+
+        <div class="civic-card">
+            <div class="card-header">
+                <h3><i class="fa-solid fa-shield-halved"></i> Privileged Legal Strategy Notes</h3>
+            </div>
+            <div class="card-body">
+                <div style="display: flex; flex-direction: column; gap: 0.75rem;">
+                    {% for note in notes %}
+                    <div style="background-color: #f8fafc; border-left: 3px solid #0284c7; padding: 0.75rem; border-radius: 4px;">
+                        <div style="display: flex; justify-content: space-between; font-size: 0.75rem; color: #64748b; margin-bottom: 0.25rem;">
+                            <span>{{ note.author.get_full_name|default:note.author.username }}</span>
+                            <span>{{ note.created_at|timesince }} ago</span>
+                        </div>
+                        <div style="font-size: 0.875rem;">{{ note.content }}</div>
+                    </div>
+                    {% empty %}
+                    <div style="background-color: #f8fafc; border-left: 3px solid #0284c7; padding: 0.75rem; border-radius: 4px;">
+                        <div style="display: flex; justify-content: space-between; font-size: 0.75rem; color: #64748b; margin-bottom: 0.25rem;">
+                            <span>Advocate Vikram Kapoor</span>
+                            <span>Privileged Work Product</span>
+                        </div>
+                        <div style="font-size: 0.875rem;">Precedent research completed under Section 9 A&C Act. Cite <em>Simplex Infrastructures</em> for grant of unconditional interim preservation orders.</div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
         </div>
     </div>
 </div>

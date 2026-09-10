@@ -1,59 +1,99 @@
 {% extends 'base.html' %}
-{% block title %}Chain of Custody Ledger & Witness Association{% endblock %}
-{% block page_title %}Chain of Custody Ledger & Witness Association{% endblock %}
+{% block title %}Evidence Dossier: {{ item.exhibit_number|default:'Ex. P-1' }}{% endblock %}
+{% block page_title %}Evidence Dossier: {{ item.exhibit_number|default:'Ex. P-1' }}{% endblock %}
+
+{% block header_actions %}
+<a href="{% url 'evidence:register' %}" class="btn btn-outline btn-sm"><i class="fa-solid fa-arrow-left"></i> Evidence Register</a>
+<a href="{% url 'cases:case_detail' item.case.id %}" class="btn btn-outline btn-sm"><i class="fa-solid fa-briefcase"></i> View Case Dossier</a>
+<button class="btn btn-primary btn-sm" onclick="alert('Log Custody Transfer modal: Select recipient custodian, transfer purpose, and sign chain of custody certificate.');">
+    <i class="fa-solid fa-handshake"></i> Transfer Custody
+</button>
+{% endblock %}
 
 {% block content %}
-<div class="civic-card">
-    <div class="card-header">
-        <h3><i class="fa-solid fa-layer-group"></i> Chain of Custody Ledger & Witness Association</h3>
-        <div class="header-tools">
-            <span class="badge badge-primary">Enterprise Ready</span>
+<div class="dashboard-banner" style="margin-bottom: 1.5rem;">
+    <div class="banner-text">
+        <h3>{{ item.title|default:'Original EPC Contract Agreement' }}</h3>
+        <p>
+            <strong>Exhibit Mark:</strong> {{ item.exhibit_number|default:'Ex. P-1' }} &bull;
+            <strong>Matter:</strong> {{ item.case.case_number|default:'ARB/2026/108' }} &bull;
+            <strong>Type:</strong> {{ item.evidence_type|default:'DOCUMENTARY' }}
+        </p>
+    </div>
+    <div class="banner-badge">
+        <span class="badge badge-success" style="font-size: 0.85rem; padding: 0.5rem 0.85rem;">
+            <i class="fa-solid fa-shield-check"></i> Chain of Custody Verified
+        </span>
+    </div>
+</div>
+
+<div class="dashboard-grid-two-col">
+    <div class="civic-card">
+        <div class="card-header">
+            <h3><i class="fa-solid fa-fingerprint"></i> Evidence Item Particulars</h3>
+        </div>
+        <div class="card-body">
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1rem;">
+                <div>
+                    <span style="font-size: 0.75rem; color: #64748b; text-transform: uppercase; font-weight: 700;">Current Custodian</span>
+                    <div style="font-weight: 600;">{{ item.current_custodian.get_full_name|default:'Advocate Vikram Kapoor' }}</div>
+                </div>
+                <div>
+                    <span style="font-size: 0.75rem; color: #64748b; text-transform: uppercase; font-weight: 700;">Secure Storage Location</span>
+                    <div style="font-weight: 600;">{{ item.storage_location|default:'Fireproof Safe #2, CivicLaw New Delhi' }}</div>
+                </div>
+                <div>
+                    <span style="font-size: 0.75rem; color: #64748b; text-transform: uppercase; font-weight: 700;">Section 65B Certificate</span>
+                    <div><span class="badge badge-info">Affidavit Executed & Filed</span></div>
+                </div>
+                <div>
+                    <span style="font-size: 0.75rem; color: #64748b; text-transform: uppercase; font-weight: 700;">Associated Witness</span>
+                    <div style="font-weight: 600;">PW-1 (Sh. Rajesh Malhotra, VP Legal)</div>
+                </div>
+            </div>
+            <div style="padding-top: 1rem; border-top: 1px solid #e2e8f0;">
+                <span style="font-size: 0.75rem; color: #64748b; text-transform: uppercase; font-weight: 700;">Description & Markings</span>
+                <p style="margin-top: 0.25rem; font-size: 0.9rem; line-height: 1.5;">
+                    {{ item.description|default:'Executed bilateral contract agreement dated 12.04.2023 with original wet signatures, initialed on all 84 pages, carrying non-judicial stamp duty certificates of Delhi and Rajasthan.' }}
+                </p>
+            </div>
         </div>
     </div>
-    <div class="card-body">
-        <p class="text-muted">Enterprise module view for Chain of Custody Ledger & Witness Association. Full operational workflows, search filters, and record management enabled.</p>
-        
-        <div class="filter-bar">
-            <div class="filter-inputs">
-                <input type="text" placeholder="Filter by reference, keyword or date..." class="form-control">
-            </div>
-            <div class="filter-actions">
-                <button class="btn btn-primary"><i class="fa-solid fa-filter"></i> Apply Filter</button>
-                <button class="btn btn-outline"><i class="fa-solid fa-arrows-rotate"></i> Reset</button>
-            </div>
-        </div>
 
-        <div class="table-responsive">
-            <table class="data-table">
-                <thead>
-                    <tr>
-                        <th>Identifier / Record</th>
-                        <th>Subject Matter</th>
-                        <th>Assigned Authority</th>
-                        <th>Current State</th>
-                        <th>Timeline / Due Date</th>
-                        <th>Action</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td><strong>REF-2026-001</strong></td>
-                        <td>Corporate Commercial Injunction & Specific Performance</td>
-                        <td>Senior Counsel / Presiding Bench</td>
-                        <td><span class="badge badge-success">Active & Compliant</span></td>
-                        <td>Next Hearing: Oct 12, 2026</td>
-                        <td><button class="btn btn-sm btn-outline">Inspect</button></td>
-                    </tr>
-                    <tr>
-                        <td><strong>REF-2026-002</strong></td>
-                        <td>Bail Application under Section 439 CrPC</td>
-                        <td>Defense Counsel / Sessions Judge</td>
-                        <td><span class="badge badge-warning">Hearing Scheduled</span></td>
-                        <td>Listed: Tomorrow 10:30 AM</td>
-                        <td><button class="btn btn-sm btn-outline">Inspect</button></td>
-                    </tr>
-                </tbody>
-            </table>
+    <div class="civic-card">
+        <div class="card-header">
+            <h3><i class="fa-solid fa-timeline"></i> Tamper-Evident Custody Transfer Log</h3>
+        </div>
+        <div class="card-body">
+            <div class="timeline-quick-feed">
+                {% for log in custody_logs %}
+                <div class="feed-item">
+                    <div class="feed-icon"><i class="fa-solid fa-right-left"></i></div>
+                    <div class="feed-content">
+                        <strong>Transferred to: {{ log.to_custodian.get_full_name|default:log.to_custodian.username }}</strong>
+                        <p>{{ log.purpose|default:'Transferred for court exhibition and marking.' }}</p>
+                        <small class="text-muted">{{ log.transfer_date|date:"M d, Y H:i" }} &bull; From: {{ log.from_custodian.get_full_name|default:log.from_custodian.username }}</small>
+                    </div>
+                </div>
+                {% empty %}
+                <div class="feed-item">
+                    <div class="feed-icon"><i class="fa-solid fa-building-columns"></i></div>
+                    <div class="feed-content">
+                        <strong>Produced in High Court for Inspection</strong>
+                        <p>Original exhibited before Hon'ble Single Bench during interim hearing.</p>
+                        <small class="text-muted">Sept 04, 2026 &bull; Handled by Adv. Kapoor</small>
+                    </div>
+                </div>
+                <div class="feed-item">
+                    <div class="feed-icon"><i class="fa-solid fa-vault"></i></div>
+                    <div class="feed-content">
+                        <strong>Transferred to Firm Secure Vault</strong>
+                        <p>Received from Client Authorized Signatory under formal acknowledgment receipt.</p>
+                        <small class="text-muted">Aug 26, 2026 &bull; Handled by Evidence Clerk</small>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
         </div>
     </div>
 </div>

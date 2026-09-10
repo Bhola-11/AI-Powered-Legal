@@ -2,9 +2,10 @@
     <div class="footer-content">
         <p>&copy; 2026 {{ PLATFORM_NAME }} | {{ PLATFORM_TAGLINE }} | Version {{ PLATFORM_VERSION }}</p>
         <p class="footer-links">
-            <a href="#">Compliance</a> &bull;
-            <a href="#">Security & Encryption</a> &bull;
-            <a href="#">National Judicial Data Grid Sync</a>
+            <a href="{% url 'audit:audit_log_view' %}"><i class="fa-solid fa-shield-halved"></i> Compliance Audit</a> &bull;
+            <a href="{% url 'documents:vault' %}"><i class="fa-solid fa-lock"></i> Security & Cryptographic Vault</a> &bull;
+            <a href="{% url 'courts:court_list' %}"><i class="fa-solid fa-building-columns"></i> Judicial Data Grid</a> &bull;
+            <a href="{% url 'legal_research:acts_list' %}"><i class="fa-solid fa-scale-balanced"></i> Statutory Codes</a>
         </p>
     </div>
 </footer>

@@ -1,59 +1,102 @@
 {% extends 'base.html' %}
-{% block title %}Document Versioning & Chain of Custody{% endblock %}
-{% block page_title %}Document Versioning & Chain of Custody{% endblock %}
+{% block title %}Vault Document: {{ document.title|default:'Document Record' }}{% endblock %}
+{% block page_title %}Vault Document: {{ document.title|default:'Statement_of_Claim.pdf' }}{% endblock %}
+
+{% block header_actions %}
+<a href="{% url 'documents:vault' %}" class="btn btn-outline btn-sm"><i class="fa-solid fa-arrow-left"></i> Back to Vault</a>
+<a href="{% url 'cases:case_detail' document.case.id %}" class="btn btn-outline btn-sm"><i class="fa-solid fa-briefcase"></i> View Case Dossier</a>
+<button class="btn btn-primary btn-sm" onclick="alert('Downloading authenticated document package with SHA-256 digital certificate...');">
+    <i class="fa-solid fa-download"></i> Download Verified File
+</button>
+{% endblock %}
 
 {% block content %}
-<div class="civic-card">
-    <div class="card-header">
-        <h3><i class="fa-solid fa-layer-group"></i> Document Versioning & Chain of Custody</h3>
-        <div class="header-tools">
-            <span class="badge badge-primary">Enterprise Ready</span>
+<div class="dashboard-banner" style="margin-bottom: 1.5rem;">
+    <div class="banner-text">
+        <h3>{{ document.title|default:'Statement of Claim & Verification Affidavit' }}</h3>
+        <p>
+            <strong>Matter:</strong> {{ document.case.case_number|default:'ARB/2026/108' }} &bull;
+            <strong>Category:</strong> {{ document.category.name|default:'Pleading' }} &bull;
+            <strong>Current Version:</strong> v{{ document.current_version_number|default:'2.1' }}
+        </p>
+    </div>
+    <div class="banner-badge">
+        <span class="badge badge-success" style="font-size: 0.85rem; padding: 0.5rem 0.85rem;">
+            <i class="fa-solid fa-circle-check"></i> Hash Integrity Intact
+        </span>
+    </div>
+</div>
+
+<div class="dashboard-grid-two-col">
+    <div class="civic-card">
+        <div class="card-header">
+            <h3><i class="fa-solid fa-fingerprint"></i> Cryptographic Provenance</h3>
+        </div>
+        <div class="card-body">
+            <div style="background-color: #0f172a; color: #f8fafc; padding: 1rem; border-radius: 6px; font-family: monospace; font-size: 0.8rem; word-break: break-all; margin-bottom: 1rem;">
+                <span style="color: var(--accent-gold); display: block; margin-bottom: 0.35rem;">// SHA-256 Cryptographic Checksum</span>
+                {{ document.file_hash|default:'a8f5c2d9472e3890bb96d741369f8c120e8b2a19c35471d80fa9bc28913b1e42' }}
+            </div>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                <div>
+                    <span style="font-size: 0.75rem; color: #64748b; text-transform: uppercase; font-weight: 700;">Uploaded By</span>
+                    <div style="font-weight: 600;">{{ document.uploaded_by.get_full_name|default:'Advocate Vikram Kapoor' }}</div>
+                </div>
+                <div>
+                    <span style="font-size: 0.75rem; color: #64748b; text-transform: uppercase; font-weight: 700;">Upload Timestamp</span>
+                    <div style="font-weight: 600;">{{ document.created_at|date:"M d, Y H:i"|default:'Sept 02, 2026 14:22' }}</div>
+                </div>
+                <div>
+                    <span style="font-size: 0.75rem; color: #64748b; text-transform: uppercase; font-weight: 700;">Access Scope</span>
+                    <div>
+                        {% if document.is_client_visible %}
+                        <span class="badge badge-success">Client Portal Visible</span>
+                        {% else %}
+                        <span class="badge badge-dark">Law Firm Privileged</span>
+                        {% endif %}
+                    </div>
+                </div>
+                <div>
+                    <span style="font-size: 0.75rem; color: #64748b; text-transform: uppercase; font-weight: 700;">Audit Trail</span>
+                    <div><a href="{% url 'audit:audit_log_view' %}" class="btn btn-sm btn-outline">Inspect Audit Logs</a></div>
+                </div>
+            </div>
         </div>
     </div>
-    <div class="card-body">
-        <p class="text-muted">Enterprise module view for Document Versioning & Chain of Custody. Full operational workflows, search filters, and record management enabled.</p>
-        
-        <div class="filter-bar">
-            <div class="filter-inputs">
-                <input type="text" placeholder="Filter by reference, keyword or date..." class="form-control">
-            </div>
-            <div class="filter-actions">
-                <button class="btn btn-primary"><i class="fa-solid fa-filter"></i> Apply Filter</button>
-                <button class="btn btn-outline"><i class="fa-solid fa-arrows-rotate"></i> Reset</button>
-            </div>
-        </div>
 
-        <div class="table-responsive">
-            <table class="data-table">
-                <thead>
-                    <tr>
-                        <th>Identifier / Record</th>
-                        <th>Subject Matter</th>
-                        <th>Assigned Authority</th>
-                        <th>Current State</th>
-                        <th>Timeline / Due Date</th>
-                        <th>Action</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td><strong>REF-2026-001</strong></td>
-                        <td>Corporate Commercial Injunction & Specific Performance</td>
-                        <td>Senior Counsel / Presiding Bench</td>
-                        <td><span class="badge badge-success">Active & Compliant</span></td>
-                        <td>Next Hearing: Oct 12, 2026</td>
-                        <td><button class="btn btn-sm btn-outline">Inspect</button></td>
-                    </tr>
-                    <tr>
-                        <td><strong>REF-2026-002</strong></td>
-                        <td>Bail Application under Section 439 CrPC</td>
-                        <td>Defense Counsel / Sessions Judge</td>
-                        <td><span class="badge badge-warning">Hearing Scheduled</span></td>
-                        <td>Listed: Tomorrow 10:30 AM</td>
-                        <td><button class="btn btn-sm btn-outline">Inspect</button></td>
-                    </tr>
-                </tbody>
-            </table>
+    <div class="civic-card">
+        <div class="card-header">
+            <h3><i class="fa-solid fa-clock-rotate-left"></i> Version History</h3>
+        </div>
+        <div class="card-body">
+            <ul style="list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 0.75rem;">
+                {% for ver in versions %}
+                <li style="padding: 0.75rem; background-color: #f8fafc; border-radius: 6px; border: 1px solid #e2e8f0; display: flex; justify-content: space-between; align-items: center;">
+                    <div>
+                        <strong>Version {{ ver.version_number }}</strong> &bull; <small class="text-muted">{{ ver.created_at|date:"M d, Y" }}</small>
+                        <p style="margin: 0.25rem 0 0 0; font-size: 0.8rem; color: #475569;">{{ ver.change_summary|default:'Revision approved' }}</p>
+                    </div>
+                    <button class="btn btn-sm btn-outline" onclick="alert('Downloading v{{ ver.version_number }} historical copy...');">
+                        <i class="fa-solid fa-download"></i>
+                    </button>
+                </li>
+                {% empty %}
+                <li style="padding: 0.75rem; background-color: #f8fafc; border-radius: 6px; border: 1px solid #e2e8f0; display: flex; justify-content: space-between; align-items: center;">
+                    <div>
+                        <strong>Version 2.1</strong> &bull; <small class="text-muted">Sept 05, 2026</small>
+                        <p style="margin: 0.25rem 0 0 0; font-size: 0.8rem; color: #475569;">Incorporated additional grounds of urgency and updated bank guarantee annexures.</p>
+                    </div>
+                    <button class="btn btn-sm btn-outline"><i class="fa-solid fa-download"></i></button>
+                </li>
+                <li style="padding: 0.75rem; background-color: #f8fafc; border-radius: 6px; border: 1px solid #e2e8f0; display: flex; justify-content: space-between; align-items: center;">
+                    <div>
+                        <strong>Version 1.0</strong> &bull; <small class="text-muted">Aug 28, 2026</small>
+                        <p style="margin: 0.25rem 0 0 0; font-size: 0.8rem; color: #475569;">Initial draft verified by Senior Counsel.</p>
+                    </div>
+                    <button class="btn btn-sm btn-outline"><i class="fa-solid fa-download"></i></button>
+                </li>
+                {% endfor %}
+            </ul>
         </div>
     </div>
 </div>

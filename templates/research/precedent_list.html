@@ -1,21 +1,24 @@
 {% extends 'base.html' %}
-{% block title %}Landmark Judicial Precedents & Ratio Decidendi{% endblock %}
-{% block page_title %}Landmark Judicial Precedents & Ratio Decidendi{% endblock %}
+{% block title %}Judicial Precedents & Case Law Repository{% endblock %}
+{% block page_title %}Judicial Precedents & Case Law Repository{% endblock %}
+
+{% block header_actions %}
+<a href="{% url 'legal_research:acts_list' %}" class="btn btn-outline btn-sm"><i class="fa-solid fa-scale-balanced"></i> Statutory Codes</a>
+<a href="{% url 'ai_engine:ai_hub' %}" class="btn btn-primary btn-sm"><i class="fa-solid fa-brain"></i> AI Precedent Matcher</a>
+{% endblock %}
 
 {% block content %}
 <div class="civic-card">
     <div class="card-header">
-        <h3><i class="fa-solid fa-layer-group"></i> Landmark Judicial Precedents & Ratio Decidendi</h3>
-        <div class="header-tools">
-            <span class="badge badge-primary">Enterprise Ready</span>
-        </div>
+        <h3><i class="fa-solid fa-landmark"></i> Supreme Court & High Court Precedents</h3>
+        <span class="badge badge-primary">Authentic Headnotes & Ratio Decidendi</span>
     </div>
     <div class="card-body">
-        <p class="text-muted">Enterprise module view for Landmark Judicial Precedents & Ratio Decidendi. Full operational workflows, search filters, and record management enabled.</p>
+        <p class="text-muted">Repository of landmark judicial authorities categorized by legal doctrine, citing bench, and binding precedent authority.</p>
         
         <div class="filter-bar">
             <div class="filter-inputs">
-                <input type="text" placeholder="Filter by reference, keyword or date..." class="form-control">
+                <input type="text" placeholder="Filter by case title, citation, court, or legal doctrine..." class="form-control">
             </div>
             <div class="filter-actions">
                 <button class="btn btn-primary"><i class="fa-solid fa-filter"></i> Apply Filter</button>
@@ -27,31 +30,74 @@
             <table class="data-table">
                 <thead>
                     <tr>
-                        <th>Identifier / Record</th>
-                        <th>Subject Matter</th>
-                        <th>Assigned Authority</th>
-                        <th>Current State</th>
-                        <th>Timeline / Due Date</th>
+                        <th>Case Title & Citation</th>
+                        <th>Deciding Court</th>
+                        <th>Core Doctrine / Ratio Decidendi</th>
+                        <th>Statutory Sections Cited</th>
+                        <th>Judgment Date</th>
                         <th>Action</th>
                     </tr>
                 </thead>
                 <tbody>
+                    {% for p in precedents %}
                     <tr>
-                        <td><strong>REF-2026-001</strong></td>
-                        <td>Corporate Commercial Injunction & Specific Performance</td>
-                        <td>Senior Counsel / Presiding Bench</td>
-                        <td><span class="badge badge-success">Active & Compliant</span></td>
-                        <td>Next Hearing: Oct 12, 2026</td>
+                        <td><strong>{{ p.title }}</strong><br><code style="font-size: 0.75rem;">{{ p.citation }}</code></td>
+                        <td>{{ p.court }}</td>
+                        <td>{{ p.ratio_decidendi|truncatechars:75 }}</td>
+                        <td><span class="badge badge-secondary">{{ p.provisions_cited }}</span></td>
+                        <td>{{ p.judgment_date|date:"M d, Y" }}</td>
+                        <td>
+                            <a href="{% url 'legal_research:precedent_detail' p.id %}" class="btn btn-sm btn-primary">
+                                <i class="fa-solid fa-file-lines"></i> View Ruling
+                            </a>
+                        </td>
+                    </tr>
+                    {% empty %}
+                    <tr>
+                        <td>
+                            <strong>Vidya Drolia & Ors. v. Durga Trading Corp.</strong><br>
+                            <code style="font-size: 0.75rem;">(2021) 2 SCC 1</code>
+                        </td>
+                        <td>Supreme Court of India (3-Judge Bench)</td>
+                        <td>Four-fold test for non-arbitrability: action in rem, third-party rights, sovereign functions.</td>
+                        <td><span class="badge badge-info">Sec. 8 & 11 Arbitration Act</span></td>
+                        <td>Dec 14, 2020</td>
                         <td><button class="btn btn-sm btn-outline">Inspect</button></td>
                     </tr>
                     <tr>
-                        <td><strong>REF-2026-002</strong></td>
-                        <td>Bail Application under Section 439 CrPC</td>
-                        <td>Defense Counsel / Sessions Judge</td>
-                        <td><span class="badge badge-warning">Hearing Scheduled</span></td>
-                        <td>Listed: Tomorrow 10:30 AM</td>
+                        <td>
+                            <strong>Simplex Infrastructure Ltd. v. Union of India</strong><br>
+                            <code style="font-size: 0.75rem;">(2019) 2 SCC 455</code>
+                        </td>
+                        <td>Supreme Court of India</td>
+                        <td>Section 5 Limitation Act does not apply to Section 34(3) challenges; 120-day cap is absolute.</td>
+                        <td><span class="badge badge-warning">Sec. 34 A&C Act & Sec. 5 Lim. Act</span></td>
+                        <td>Dec 10, 2018</td>
                         <td><button class="btn btn-sm btn-outline">Inspect</button></td>
                     </tr>
+                    <tr>
+                        <td>
+                            <strong>SCG Contracts (India) Pvt Ltd v. K.S. Chamankar</strong><br>
+                            <code style="font-size: 0.75rem;">(2019) 12 SCC 210</code>
+                        </td>
+                        <td>Supreme Court of India</td>
+                        <td>Commercial Courts Act Order VIII Rule 1 CPC 120-day time limit for filing written statement is mandatory.</td>
+                        <td><span class="badge badge-danger">Order VIII R.1 CPC / CCA 2015</span></td>
+                        <td>Feb 12, 2019</td>
+                        <td><button class="btn btn-sm btn-outline">Inspect</button></td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <strong>Maneka Gandhi v. Union of India</strong><br>
+                            <code style="font-size: 0.75rem;">(1978) 1 SCC 248</code>
+                        </td>
+                        <td>Supreme Court of India (7-Judge Bench)</td>
+                        <td>Procedure established by law under Article 21 must be just, fair and reasonable; expanded right to personal liberty.</td>
+                        <td><span class="badge badge-dark">Articles 14, 19, 21 Constitution</span></td>
+                        <td>Jan 25, 1978</td>
+                        <td><button class="btn btn-sm btn-outline">Inspect</button></td>
+                    </tr>
+                    {% endfor %}
                 </tbody>
             </table>
         </div>

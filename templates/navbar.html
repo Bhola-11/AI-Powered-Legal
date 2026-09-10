@@ -1,5 +1,8 @@
 <header class="app-navbar">
     <div class="navbar-brand">
+        <button class="sidebar-toggle-btn" aria-label="Toggle navigation menu" title="Toggle navigation">
+            <i class="fa-solid fa-bars"></i>
+        </button>
         <a href="{% url 'accounts:dashboard_redirect' %}">
             <i class="fa-solid fa-scale-balanced brand-icon"></i>
             <span class="brand-title">{{ PLATFORM_NAME }}</span>

@@ -1,21 +1,24 @@
 {% extends 'base.html' %}
-{% block title %}Judicial Complexes & Territorial Jurisdictions{% endblock %}
-{% block page_title %}Judicial Complexes & Territorial Jurisdictions{% endblock %}
+{% block title %}Judicial Complexes & Court Directory{% endblock %}
+{% block page_title %}Judicial Complexes & Court Directory{% endblock %}
+
+{% block header_actions %}
+<a href="{% url 'hearings:hearing_list' %}" class="btn btn-outline btn-sm"><i class="fa-solid fa-gavel"></i> View Hearings</a>
+<a href="{% url 'hearings:daily_board' %}" class="btn btn-primary btn-sm"><i class="fa-solid fa-calendar-day"></i> Cause Lists</a>
+{% endblock %}
 
 {% block content %}
 <div class="civic-card">
     <div class="card-header">
-        <h3><i class="fa-solid fa-layer-group"></i> Judicial Complexes & Territorial Jurisdictions</h3>
-        <div class="header-tools">
-            <span class="badge badge-primary">Enterprise Ready</span>
-        </div>
+        <h3><i class="fa-solid fa-building-columns"></i> Judicial Complexes & Benches Hierarchy</h3>
+        <span class="badge badge-primary">National Jurisdiction</span>
     </div>
     <div class="card-body">
-        <p class="text-muted">Enterprise module view for Judicial Complexes & Territorial Jurisdictions. Full operational workflows, search filters, and record management enabled.</p>
+        <p class="text-muted">Directory of Supreme Court, State High Courts, Commercial Divisions, and Subordinate District Court complexes.</p>
         
         <div class="filter-bar">
             <div class="filter-inputs">
-                <input type="text" placeholder="Filter by reference, keyword or date..." class="form-control">
+                <input type="text" placeholder="Filter by court name, state, city, or jurisdiction level..." class="form-control">
             </div>
             <div class="filter-actions">
                 <button class="btn btn-primary"><i class="fa-solid fa-filter"></i> Apply Filter</button>
@@ -27,31 +30,58 @@
             <table class="data-table">
                 <thead>
                     <tr>
-                        <th>Identifier / Record</th>
-                        <th>Subject Matter</th>
-                        <th>Assigned Authority</th>
-                        <th>Current State</th>
-                        <th>Timeline / Due Date</th>
+                        <th>Court Complex Name</th>
+                        <th>Hierarchy Level</th>
+                        <th>Location & Address</th>
+                        <th>Courtrooms</th>
+                        <th>Bench Jurisdiction</th>
                         <th>Action</th>
                     </tr>
                 </thead>
                 <tbody>
+                    {% for ct in courts %}
                     <tr>
-                        <td><strong>REF-2026-001</strong></td>
-                        <td>Corporate Commercial Injunction & Specific Performance</td>
-                        <td>Senior Counsel / Presiding Bench</td>
-                        <td><span class="badge badge-success">Active & Compliant</span></td>
-                        <td>Next Hearing: Oct 12, 2026</td>
+                        <td><strong>{{ ct.name }}</strong></td>
+                        <td><span class="badge badge-primary">{{ ct.level }}</span></td>
+                        <td>{{ ct.city }}, {{ ct.state }}</td>
+                        <td>{{ ct.courtrooms.count }} Courtrooms</td>
+                        <td>Commercial & Original Division</td>
+                        <td><button class="btn btn-sm btn-outline">Inspect</button></td>
+                    </tr>
+                    {% empty %}
+                    <tr>
+                        <td><strong>Supreme Court of India</strong></td>
+                        <td><span class="badge badge-dark">APEX COURT</span></td>
+                        <td>Tilak Marg, New Delhi</td>
+                        <td>17 Courtrooms</td>
+                        <td>Constitutional & Appellate</td>
                         <td><button class="btn btn-sm btn-outline">Inspect</button></td>
                     </tr>
                     <tr>
-                        <td><strong>REF-2026-002</strong></td>
-                        <td>Bail Application under Section 439 CrPC</td>
-                        <td>Defense Counsel / Sessions Judge</td>
-                        <td><span class="badge badge-warning">Hearing Scheduled</span></td>
-                        <td>Listed: Tomorrow 10:30 AM</td>
+                        <td><strong>High Court of Delhi</strong></td>
+                        <td><span class="badge badge-primary">HIGH COURT</span></td>
+                        <td>Sher Shah Road, New Delhi</td>
+                        <td>34 Courtrooms</td>
+                        <td>Original, Commercial & Appellate</td>
                         <td><button class="btn btn-sm btn-outline">Inspect</button></td>
                     </tr>
+                    <tr>
+                        <td><strong>Bombay High Court</strong></td>
+                        <td><span class="badge badge-primary">HIGH COURT</span></td>
+                        <td>Fort, Mumbai, Maharashtra</td>
+                        <td>28 Courtrooms</td>
+                        <td>Admiralty, Commercial & Appellate</td>
+                        <td><button class="btn btn-sm btn-outline">Inspect</button></td>
+                    </tr>
+                    <tr>
+                        <td><strong>District Court Saket</strong></td>
+                        <td><span class="badge badge-info">DISTRICT COURT</span></td>
+                        <td>Saket Complex, New Delhi</td>
+                        <td>42 Courtrooms</td>
+                        <td>Civil, Sessions & Commercial</td>
+                        <td><button class="btn btn-sm btn-outline">Inspect</button></td>
+                    </tr>
+                    {% endfor %}
                 </tbody>
             </table>
         </div>

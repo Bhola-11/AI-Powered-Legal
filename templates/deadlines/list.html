@@ -2,20 +2,25 @@
 {% block title %}Limitation Tracking & Statutory Deadlines{% endblock %}
 {% block page_title %}Limitation Tracking & Statutory Deadlines{% endblock %}
 
+{% block header_actions %}
+<a href="{% url 'deadlines:limitation_calculator' %}" class="btn btn-primary btn-sm">
+    <i class="fa-solid fa-calculator"></i> Limitation Calculator
+</a>
+<a href="{% url 'cases:case_list' %}" class="btn btn-outline btn-sm"><i class="fa-solid fa-briefcase"></i> View Cases</a>
+{% endblock %}
+
 {% block content %}
 <div class="civic-card">
     <div class="card-header">
-        <h3><i class="fa-solid fa-layer-group"></i> Limitation Tracking & Statutory Deadlines</h3>
-        <div class="header-tools">
-            <span class="badge badge-primary">Enterprise Ready</span>
-        </div>
+        <h3><i class="fa-solid fa-clock-rotate-left"></i> Statutory Deadlines & Limitation Register</h3>
+        <span class="badge badge-danger"><i class="fa-solid fa-triangle-exclamation"></i> Limitation Bar Tracking</span>
     </div>
     <div class="card-body">
-        <p class="text-muted">Enterprise module view for Limitation Tracking & Statutory Deadlines. Full operational workflows, search filters, and record management enabled.</p>
+        <p class="text-muted">Rigorous tracking of court filing deadlines, statutory appeals, written statements, and discovery admissions.</p>
         
         <div class="filter-bar">
             <div class="filter-inputs">
-                <input type="text" placeholder="Filter by reference, keyword or date..." class="form-control">
+                <input type="text" placeholder="Filter by deadline title, matter, statute, or due date..." class="form-control">
             </div>
             <div class="filter-actions">
                 <button class="btn btn-primary"><i class="fa-solid fa-filter"></i> Apply Filter</button>
@@ -27,31 +32,54 @@
             <table class="data-table">
                 <thead>
                     <tr>
-                        <th>Identifier / Record</th>
-                        <th>Subject Matter</th>
-                        <th>Assigned Authority</th>
-                        <th>Current State</th>
-                        <th>Timeline / Due Date</th>
+                        <th>Deadline Title</th>
+                        <th>Associated Matter</th>
+                        <th>Governing Statute / Rule</th>
+                        <th>Due Date</th>
+                        <th>Urgency & Days Left</th>
                         <th>Action</th>
                     </tr>
                 </thead>
                 <tbody>
+                    {% for d in deadlines %}
                     <tr>
-                        <td><strong>REF-2026-001</strong></td>
-                        <td>Corporate Commercial Injunction & Specific Performance</td>
-                        <td>Senior Counsel / Presiding Bench</td>
-                        <td><span class="badge badge-success">Active & Compliant</span></td>
-                        <td>Next Hearing: Oct 12, 2026</td>
+                        <td><strong>{{ d.title }}</strong></td>
+                        <td>{{ d.case.case_number|default:'Global Reference' }}</td>
+                        <td>{{ d.statutory_provision|default:'Limitation Act 1963' }}</td>
+                        <td><strong>{{ d.due_date|date:"M d, Y" }}</strong></td>
+                        <td>
+                            <span class="badge {% if d.is_urgent %}badge-danger{% else %}badge-warning{% endif %}">
+                                {{ d.days_remaining }} days remaining
+                            </span>
+                        </td>
+                        <td><button class="btn btn-sm btn-outline">Inspect</button></td>
+                    </tr>
+                    {% empty %}
+                    <tr>
+                        <td><strong>Written Statement (O.VIII R.1 CPC)</strong></td>
+                        <td>CS/2026/89 &bull; TechCorp v. Nexus</td>
+                        <td>Order VIII Rule 1 CPC / Commercial Courts Act</td>
+                        <td><strong>Sept 14, 2026</strong></td>
+                        <td><span class="badge badge-danger"><i class="fa-solid fa-fire"></i> 3 Days (Critical)</span></td>
                         <td><button class="btn btn-sm btn-outline">Inspect</button></td>
                     </tr>
                     <tr>
-                        <td><strong>REF-2026-002</strong></td>
-                        <td>Bail Application under Section 439 CrPC</td>
-                        <td>Defense Counsel / Sessions Judge</td>
-                        <td><span class="badge badge-warning">Hearing Scheduled</span></td>
-                        <td>Listed: Tomorrow 10:30 AM</td>
+                        <td><strong>Admission / Denial Affidavit</strong></td>
+                        <td>CS/2025/1402 &bull; Sharma v. Union Bank</td>
+                        <td>Order XI Rule 4 CPC (Commercial Division)</td>
+                        <td><strong>Sept 18, 2026</strong></td>
+                        <td><span class="badge badge-warning">7 Days Remaining</span></td>
                         <td><button class="btn btn-sm btn-outline">Inspect</button></td>
                     </tr>
+                    <tr>
+                        <td><strong>Arbitration Section 34 Challenge Bar</strong></td>
+                        <td>ARB/2026/108 &bull; Bharat Heavy Infra</td>
+                        <td>Section 34(3) Arbitration Act (3 Months + 30 Days)</td>
+                        <td><strong>Oct 22, 2026</strong></td>
+                        <td><span class="badge badge-info">41 Days Remaining</span></td>
+                        <td><button class="btn btn-sm btn-outline">Inspect</button></td>
+                    </tr>
+                    {% endfor %}
                 </tbody>
             </table>
         </div>
