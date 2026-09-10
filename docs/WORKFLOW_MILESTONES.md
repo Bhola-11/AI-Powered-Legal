@@ -418,3 +418,8 @@
 - Feature: `feat(precedents): catalog High Courts commercial appellate jurisprudence repository`
 - Path Scope: `['legal_data/precedents/high_courts_corpus.py']`
 - Timestamp: 2026-09-10 11:08:06 UTC
+
+### Milestone #091 - 091-pleadings-civil-plaints-injunctions
+- Feature: `feat(pleadings): add standard civil plaints, written statements and injunction drafts`
+- Path Scope: `['legal_data/pleadings/civil_pleadings_templates.py']`
+- Timestamp: 2026-09-10 11:08:17 UTC
