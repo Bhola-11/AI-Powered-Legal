@@ -13,3 +13,8 @@
 - Feature: `feat(accounts): implement login, logout, registration and role redirect views`
 - Path Scope: `['apps/accounts/views.py', 'apps/accounts/urls.py']`
 - Timestamp: 2026-09-10 10:52:35 UTC
+
+### Milestone #010 - 010-accounts-admin-panel
+- Feature: `feat(accounts): configure customized Django admin for user and role management`
+- Path Scope: `['apps/accounts/admin.py']`
+- Timestamp: 2026-09-10 10:52:45 UTC
