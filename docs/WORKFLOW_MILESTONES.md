@@ -138,3 +138,8 @@
 - Feature: `feat(research): implement advocate research notebooks and citation mapping`
 - Path Scope: `['apps/legal_research/admin.py']`
 - Timestamp: 2026-09-10 10:57:20 UTC
+
+### Milestone #035 - 035-tasks-workflows-models
+- Feature: `feat(tasks): implement CaseTask, WorkflowStage and TaskChecklist models`
+- Path Scope: `['apps/tasks/models.py', 'apps/tasks/apps.py']`
+- Timestamp: 2026-09-10 10:57:33 UTC
