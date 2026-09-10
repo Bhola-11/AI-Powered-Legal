@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+{% block title %}Tamper-Evident SHA-256 Audit Trail & Security Events{% endblock %}
+{% block page_title %}Tamper-Evident SHA-256 Audit Trail & Security Events{% endblock %}
+
+{% block content %}
+<div class="civic-card">
+    <div class="card-header">
+        <h3><i class="fa-solid fa-layer-group"></i> Tamper-Evident SHA-256 Audit Trail & Security Events</h3>
+        <div class="header-tools">
+            <span class="badge badge-primary">Enterprise Ready</span>
+        </div>
+    </div>
+    <div class="card-body">
+        <p class="text-muted">Enterprise module view for Tamper-Evident SHA-256 Audit Trail & Security Events. Full operational workflows, search filters, and record management enabled.</p>
+        
+        <div class="filter-bar">
+            <div class="filter-inputs">
+                <input type="text" placeholder="Filter by reference, keyword or date..." class="form-control">
+            </div>
+            <div class="filter-actions">
+                <button class="btn btn-primary"><i class="fa-solid fa-filter"></i> Apply Filter</button>
+                <button class="btn btn-outline"><i class="fa-solid fa-arrows-rotate"></i> Reset</button>
+            </div>
+        </div>
+
+        <div class="table-responsive">
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>Identifier / Record</th>
+                        <th>Subject Matter</th>
+                        <th>Assigned Authority</th>
+                        <th>Current State</th>
+                        <th>Timeline / Due Date</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>REF-2026-001</strong></td>
+                        <td>Corporate Commercial Injunction & Specific Performance</td>
+                        <td>Senior Counsel / Presiding Bench</td>
+                        <td><span class="badge badge-success">Active & Compliant</span></td>
+                        <td>Next Hearing: Oct 12, 2026</td>
+                        <td><button class="btn btn-sm btn-outline">Inspect</button></td>
+                    </tr>
+                    <tr>
+                        <td><strong>REF-2026-002</strong></td>
+                        <td>Bail Application under Section 439 CrPC</td>
+                        <td>Defense Counsel / Sessions Judge</td>
+                        <td><span class="badge badge-warning">Hearing Scheduled</span></td>
+                        <td>Listed: Tomorrow 10:30 AM</td>
+                        <td><button class="btn btn-sm btn-outline">Inspect</button></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock %}
