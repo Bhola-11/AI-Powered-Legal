@@ -448,3 +448,8 @@
 - Feature: `feat(templates): implement master base layout, sidebar, navbar and footer templates`
 - Path Scope: `['templates/base.html', 'templates/navbar.html', 'templates/sidebar.html', 'templates/footer.html', 'templates/messages.html']`
 - Timestamp: 2026-09-10 11:09:14 UTC
+
+### Milestone #097 - 097-templates-role-dashboards
+- Feature: `feat(templates): implement 5 specialized dashboards for Admin, Lawyer and Client`
+- Path Scope: `['templates/dashboards/']`
+- Timestamp: 2026-09-10 11:09:25 UTC
