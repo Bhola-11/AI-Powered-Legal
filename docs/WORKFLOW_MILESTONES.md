@@ -328,3 +328,8 @@
 - Feature: `feat(statutes): codify Commercial Courts Act and Specific Relief Act`
 - Path Scope: `['legal_data/statutes/commercial_arbitration_acts.py']`
 - Timestamp: 2026-09-10 11:04:40 UTC
+
+### Milestone #073 - 073-statutes-arbitration-conciliation-full
+- Feature: `feat(statutes): codify Arbitration & Conciliation Act Sections 1-86 and Schedules`
+- Path Scope: `['legal_data/statutes/arbitration_full_code.py']`
+- Timestamp: 2026-09-10 11:04:51 UTC
