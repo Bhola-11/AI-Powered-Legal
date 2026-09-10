@@ -68,3 +68,8 @@
 - Feature: `feat(cases): implement 16-stage case lifecycle and Case model`
 - Path Scope: `['apps/cases/models.py', 'apps/cases/apps.py']`
 - Timestamp: 2026-09-10 10:54:39 UTC
+
+### Milestone #021 - 021-cases-advocates-parties
+- Feature: `feat(cases): add opposite parties, advocate assignments and case views`
+- Path Scope: `['apps/cases/views.py', 'apps/cases/urls.py']`
+- Timestamp: 2026-09-10 10:54:50 UTC
