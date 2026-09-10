@@ -178,3 +178,8 @@
 - Feature: `feat(communications): create secure client-advocate messaging portal views`
 - Path Scope: `['apps/communications/views.py', 'apps/communications/urls.py']`
 - Timestamp: 2026-09-10 10:58:53 UTC
+
+### Milestone #043 - 043-communications-admin-threads
+- Feature: `feat(communications): register message threads and attachments in admin`
+- Path Scope: `['apps/communications/admin.py']`
+- Timestamp: 2026-09-10 10:59:04 UTC
