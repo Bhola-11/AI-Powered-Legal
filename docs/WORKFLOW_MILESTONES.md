@@ -383,3 +383,8 @@
 - Feature: `feat(precedents): catalog Constitutional Law landmark rulings and ratio decidendi`
 - Path Scope: `['legal_data/precedents/constitutional_precedents.py']`
 - Timestamp: 2026-09-10 11:06:46 UTC
+
+### Milestone #084 - 084-precedents-criminal-bail-rulings
+- Feature: `feat(precedents): catalog Criminal Defense and bail guidelines landmark rulings`
+- Path Scope: `['legal_data/precedents/criminal_precedents.py']`
+- Timestamp: 2026-09-10 11:06:58 UTC
