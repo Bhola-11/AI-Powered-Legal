@@ -118,3 +118,8 @@
 - Feature: `feat(evidence): add chain-of-custody tracking logs and register views`
 - Path Scope: `['apps/evidence/views.py', 'apps/evidence/urls.py']`
 - Timestamp: 2026-09-10 10:56:32 UTC
+
+### Milestone #031 - 031-evidence-witness-links
+- Feature: `feat(evidence): associate evidence items with witness statements in admin`
+- Path Scope: `['apps/evidence/admin.py']`
+- Timestamp: 2026-09-10 10:56:45 UTC
