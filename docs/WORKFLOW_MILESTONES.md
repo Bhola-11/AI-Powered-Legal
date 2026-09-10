@@ -468,3 +468,8 @@
 - Feature: `feat(templates): implement document vault and evidence register templates`
 - Path Scope: `['templates/documents/', 'templates/evidence/']`
 - Timestamp: 2026-09-10 11:09:59 UTC
+
+### Milestone #101 - 101-templates-research-tasks-deadlines
+- Feature: `feat(templates): implement legal research browser, task kanban and deadline templates`
+- Path Scope: `['templates/research/', 'templates/tasks/', 'templates/deadlines/']`
+- Timestamp: 2026-09-10 11:10:11 UTC
