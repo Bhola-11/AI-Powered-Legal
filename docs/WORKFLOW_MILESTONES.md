@@ -363,3 +363,8 @@
 - Feature: `feat(statutes): codify Indian Contract Act and Transfer of Property Act`
 - Path Scope: `['legal_data/statutes/contract_property_acts.py']`
 - Timestamp: 2026-09-10 11:06:02 UTC
+
+### Milestone #080 - 080-statutes-labor-and-environment
+- Feature: `feat(statutes): codify Industrial Disputes Code and Environmental Protection Enactments`
+- Path Scope: `['legal_data/statutes/labor_environmental_acts.py']`
+- Timestamp: 2026-09-10 11:06:13 UTC
