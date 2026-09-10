@@ -38,3 +38,8 @@
 - Feature: `feat(clients): create individual, corporate and institutional client models`
 - Path Scope: `['apps/clients/models.py', 'apps/clients/apps.py']`
 - Timestamp: 2026-09-10 10:53:31 UTC
+
+### Milestone #015 - 015-clients-kyc-verification
+- Feature: `feat(clients): implement KYC document verification pipeline and client views`
+- Path Scope: `['apps/clients/views.py', 'apps/clients/urls.py']`
+- Timestamp: 2026-09-10 10:53:43 UTC
