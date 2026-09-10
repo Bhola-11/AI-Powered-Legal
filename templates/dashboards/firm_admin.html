@@ -1,0 +1,111 @@
+{% extends 'base.html' %}
+{% block title %}Law Firm Managing Partner Dashboard{% endblock %}
+{% block page_title %}Law Firm Managing Partner Dashboard{% endblock %}
+
+{% block content %}
+<div class="dashboard-banner">
+    <div class="banner-text">
+        <h3>Welcome, {{ user.get_full_name|default:user.username }}</h3>
+        <p>Practice area workloads, billable realization, case disposition rates, lawyer assignments, and client billing.</p>
+    </div>
+    <div class="banner-badge">
+        <span class="role-pill">{{ user.get_role_display }}</span>
+    </div>
+</div>
+
+<div class="metric-cards-grid">
+    <div class="metric-card">
+        <div class="metric-icon bg-primary"><i class="fa-solid fa-briefcase"></i></div>
+        <div class="metric-data">
+            <span class="metric-number">48</span>
+            <span class="metric-label">Active Matters</span>
+        </div>
+    </div>
+    <div class="metric-card">
+        <div class="metric-icon bg-warning"><i class="fa-solid fa-gavel"></i></div>
+        <div class="metric-data">
+            <span class="metric-number">5</span>
+            <span class="metric-label">Today's Hearings</span>
+        </div>
+    </div>
+    <div class="metric-card">
+        <div class="metric-icon bg-danger"><i class="fa-solid fa-clock"></i></div>
+        <div class="metric-data">
+            <span class="metric-number">3</span>
+            <span class="metric-label">Pending Deadlines</span>
+        </div>
+    </div>
+    <div class="metric-card">
+        <div class="metric-icon bg-success"><i class="fa-solid fa-file-invoice-dollar"></i></div>
+        <div class="metric-data">
+            <span class="metric-number">$142,500</span>
+            <span class="metric-label">Fee Realization</span>
+        </div>
+    </div>
+</div>
+
+<div class="dashboard-grid-two-col">
+    <div class="civic-card">
+        <div class="card-header">
+            <h3><i class="fa-solid fa-calendar-days"></i> Upcoming Hearings Board</h3>
+            <a href="{% url 'hearings:hearing_list' %}" class="btn btn-sm btn-outline">View All</a>
+        </div>
+        <div class="card-body">
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>Case</th>
+                        <th>Court / Bench</th>
+                        <th>Date & Time</th>
+                        <th>Purpose</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>ARB/2026/89</strong><br><small>TechCorp v. Nexus Ltd</small></td>
+                        <td>High Court of Delhi (Court 4)</td>
+                        <td>Today, 10:30 AM</td>
+                        <td>Section 9 Injunction Hearing</td>
+                        <td><span class="badge badge-warning">Listed</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>CS/2025/1402</strong><br><small>Sharma v. Union Bank</small></td>
+                        <td>District Court Saket (Room 204)</td>
+                        <td>Tomorrow, 02:00 PM</td>
+                        <td>Framing of Issues</td>
+                        <td><span class="badge badge-info">Scheduled</span></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class="civic-card">
+        <div class="card-header">
+            <h3><i class="fa-solid fa-clock-rotate-left"></i> Urgent Deadlines & Limitations</h3>
+            <a href="{% url 'deadlines:deadline_list' %}" class="btn btn-sm btn-outline">Calendar</a>
+        </div>
+        <div class="card-body">
+            <div class="timeline-quick-feed">
+                <div class="feed-item urgent">
+                    <div class="feed-icon"><i class="fa-solid fa-triangle-exclamation"></i></div>
+                    <div class="feed-content">
+                        <strong>Written Statement (O.VIII R.1 CPC)</strong>
+                        <p>Matter: Global Logistics v. Apex Transport - 3 days remaining before expiry of 30-day statutory limit.</p>
+                        <small class="text-danger">Due: Sept 14, 2026</small>
+                    </div>
+                </div>
+                <div class="feed-item">
+                    <div class="feed-icon"><i class="fa-solid fa-file-signature"></i></div>
+                    <div class="feed-content">
+                        <strong>Admission / Denial of Documents Affidavit</strong>
+                        <p>Matter: Commercial Suit 410/2025 - File statement under Commercial Courts Act.</p>
+                        <small class="text-muted">Due: Sept 18, 2026</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
