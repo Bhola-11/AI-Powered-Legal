@@ -258,3 +258,8 @@
 - Feature: `feat(audit): register audit log viewer and security monitoring in admin`
 - Path Scope: `['apps/audit/admin.py']`
 - Timestamp: 2026-09-10 11:02:01 UTC
+
+### Milestone #059 - 059-ai-intelligence-services
+- Feature: `feat(ai): implement LegalAIService with fact extraction and petition drafter`
+- Path Scope: `['apps/ai_engine/services.py', 'apps/ai_engine/apps.py']`
+- Timestamp: 2026-09-10 11:02:12 UTC
